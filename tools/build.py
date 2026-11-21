@@ -18,7 +18,7 @@ from cryptography.hazmat.primitives import hashes
 
 ROOT = Path(__file__).resolve().parent.parent
 NEW, OUT = ROOT / "src" / "new", ROOT / "data"
-ITER = 310000
+ITER = 600000
 CH = {
  "mg": ["경영일반", "조직행동: 개인", "조직행동: 집단·조직", "조직이론", "인적자원관리", "전략경영", "국제경영", "마케팅 개요", "마케팅 조사", "마케팅 전략", "제품·서비스·브랜드", "가격", "유통", "촉진", "소비자 행동", "경영과학", "생산시스템과 프로세스 관리", "품질경영", "생산능력 관리", "공급사슬관리", "재고관리", "운영계획과 자원계획", "린 시스템 설계", "경영정보시스템"],
  "fm": ["재무관리의 이해", "경제성 평가", "투자안의 평가", "포트폴리오이론", "자본자산가격결정모형", "CAPM의 발전과 응용", "주식 평가", "채권 평가와 수익률", "듀레이션과 채권투자전략", "레버리지와 자본구조이론", "자본구조이론 발전과 응용", "자본거래", "인수합병", "파생상품과 옵션가격결정", "옵션의 활용", "선물과 국제재무관리", "기타주제"],
@@ -43,8 +43,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--password", required=True)
     pw = ap.parse_args().password
-    if len(pw) < 8:
-        sys.exit("비밀번호는 8자 이상으로 해 주세요.")
+    if len(pw) < 4:
+        sys.exit("비밀번호는 4자 이상으로 해 주세요.")
     Q, seq = [], {}
     for s in ("mg", "fm"):
         for f in sorted(glob.glob(str(NEW / f"{s}_*.json"))):
