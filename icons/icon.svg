@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+ <defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff8a3d"/><stop offset="1" stop-color="#e8520f"/></linearGradient>
+  <linearGradient id="st" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ffe7d4"/></linearGradient>
+  <linearGradient id="gd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe066"/><stop offset="1" stop-color="#ffb01f"/></linearGradient>
+ </defs>
+ <rect width="512" height="512" fill="url(#bg)"/>
+ <circle cx="420" cy="86" r="150" fill="#ffffff" opacity=".08"/>
+ <!-- 계단 -->
+ <g>
+  <rect x="86" y="318" width="112" height="112" rx="18" fill="#c94409" opacity=".35" transform="translate(0 10)"/>
+  <rect x="200" y="248" width="112" height="182" rx="18" fill="#c94409" opacity=".35" transform="translate(0 10)"/>
+  <rect x="314" y="178" width="112" height="252" rx="18" fill="#c94409" opacity=".35" transform="translate(0 10)"/>
+  <rect x="86" y="318" width="112" height="112" rx="18" fill="url(#st)"/>
+  <rect x="200" y="248" width="112" height="182" rx="18" fill="url(#st)"/>
+  <rect x="314" y="178" width="112" height="252" rx="18" fill="url(#st)"/>
+  <g fill="#f26a21" font-family="Arial Rounded MT Bold,Arial,sans-serif" font-weight="700" font-size="64" text-anchor="middle">
+   <text x="142" y="398">O</text>
+   <text x="256" y="328" fill="#ff3b5c">X</text>
+   <text x="370" y="258" fill="#2f6bff">?</text>
+  </g>
+ </g>
+ <!-- 별 -->
+ <g transform="translate(370 112) rotate(-8)">
+  <path d="M0-62 18-20 63-17 28 12 39 56 0 32-39 56-28 12-63-17-18-20z" fill="#b86e00" opacity=".35" transform="translate(0 8)"/>
+  <path d="M0-62 18-20 63-17 28 12 39 56 0 32-39 56-28 12-63-17-18-20z" fill="url(#gd)" stroke="#fff3c4" stroke-width="5" stroke-linejoin="round"/>
+ </g>
+</svg>
