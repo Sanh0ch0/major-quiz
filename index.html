@@ -509,7 +509,7 @@ input{font:inherit}
  </div>
  <div class="box">
   <h3><svg class="ic"><use href="#i-upload"/></svg>기록 가져오기 · 백업</h3>
-  <p>‘전공 기출 CBT’는 claude.ai 안에만 기록이 저장돼서 자동으로 가져올 수 없어요. 그 화면에서 장별 <b>푼 문제 수</b>를 보고 <b>1장 12/40</b>처럼 한 줄씩 적어 주세요(정답 수도 알면 <b>1장 12/40 · 정답 10</b>처럼). 가져온 문제는 ‘푼 문제’로만 채워지고 경험치·레벨은 새로 푼 문제부터 쌓여요. <b>기출 잠금을 먼저 풀어 두면 기출 문제부터</b> 채워져요.</p>
+  <p><b>경영학 기출의 문제별 기록(668문제)은 기출 잠금을 풀면 자동으로 옮겨져요.</b> 회계학·재무관리는 예전 CBT와 문제가 달라서, 필요하면 아래처럼 장별 숫자로만 넣을 수 있어요. 그 화면에서 장별 <b>푼 문제 수</b>를 보고 <b>1장 12/40</b>처럼 한 줄씩 적어 주세요(정답 수도 알면 <b>1장 12/40 · 정답 10</b>처럼). 가져온 문제는 ‘푼 문제’로만 채워지고 경험치·레벨은 새로 푼 문제부터 쌓여요. <b>기출 잠금을 먼저 풀어 두면 기출 문제부터</b> 채워져요.</p>
   <textarea id="impbox" class="inp2" rows="4" placeholder="1장 12/40&#10;2장 30/45&#10;3장 8/40 정답 6"></textarea>
   <div class="row2"><button class="b3 ghost sm" id="impex">내보내기</button><button class="b3 sm" id="impgo">가져오기</button></div>
   <div class="stline" id="impmsg"></div>
@@ -578,7 +578,20 @@ async function getMbin(){if(MBIN)return MBIN;const r=await fetch("data/m.bin?v="
 async function loadMeta(key){const u=await getMbin();return JSON.parse(td.decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:u.slice(0,12)},key,u.slice(12))))}
 
 async function loadGc(key){const r=await fetch("data/g.bin?v="+encodeURIComponent((KINFO.gsalt||"").slice(0,10)));if(!r.ok)throw new Error("net");const u=new Uint8Array(await r.arrayBuffer());
-  const g=JSON.parse(td.decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:u.slice(0,12)},key,u.slice(12))));META.S.gc=g.S.gc;META.Q=META.Q.filter(q=>q[1]!=="gc").concat(g.Q)}
+  const g=JSON.parse(td.decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:u.slice(0,12)},key,u.slice(12))));META.S.gc=g.S.gc;META.Q=META.Q.filter(q=>q[1]!=="gc").concat(g.Q);await migCbt(key)}
+/* 예전 '전공 기출 CBT'의 문제별 기록을 한 번만 옮겨 옴 (기출 키로 암호화된 data/c.bin) */
+async function migCbt(key){if(LS.get("mig-cbt1"))return;
+  try{const r=await fetch("data/c.bin?v=1");if(!r.ok)return;const u=new Uint8Array(await r.arrayBuffer());
+    const o=JSON.parse(td.decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:u.slice(0,12)},key,u.slice(12))));
+    const now=Date.now(),have=new Set(META.Q.map(q=>q[0])),mine={};let n=0;
+    for(const k in o.mg){const id="gc"+String(k).padStart(4,"0");if(!have.has(id))continue;mine[id]=1;
+      const p=ST8.P[id];if(p&&!p.m&&p.c+p.w>0)continue;
+      const b=+o.mg[k][0],c=+o.mg[k][1],w=+o.mg[k][2];
+      ST8.P[id]={c,w,b,d:b===0?now:now+(1+(+k%14))*DAY,t:now,m:1};n++}
+    for(const id in ST8.P){const p=ST8.P[id];if(p.m&&!mine[id]&&/^(gc|mg)/.test(id))ST8.P[id]={c:0,w:0,b:0,d:0,t:now}}
+    save();LS.set("mig-cbt1",1);
+    setTimeout(()=>{toast("예전 CBT 기출 기록 "+n.toLocaleString()+"문제를 옮겼어요");if(CFG.tok&&typeof syncNow==="function")syncNow()},900)
+  }catch(e){}}
 async function deriveG(pw){const base=await crypto.subtle.importKey("raw",te.encode(pw),"PBKDF2",false,["deriveKey"]);return crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(KINFO.gsalt),iterations:KINFO.it,hash:"SHA-256"},base,{name:"AES-GCM",length:256},false,["decrypt"])}
 async function tryGc(){if(!KINFO||!KINFO.gsalt)return;const k=await kvGet("gkey"),s=await kvGet("gsalt");if(k&&s===KINFO.gsalt){try{await loadGc(k)}catch(e){}}}
 
