@@ -85,9 +85,10 @@ input{font:inherit}
 .hchip .dot{width:8px;height:8px;border-radius:50%;background:#bff5d6}
 .hchip .dot.off{background:rgba(255,255,255,.5)}.hchip .dot.bad{background:#ffd0d6}
 .musb{position:absolute;right:62px;top:14px;z-index:2;width:40px;height:40px;border-radius:13px;border:0;background:rgba(255,255,255,.2);color:#fff;display:grid;place-items:center}
+.trob{right:110px}
 .musb.off{opacity:.55}.musb.off::after{content:"";position:absolute;width:26px;height:2.5px;background:#fff;transform:rotate(-45deg);border-radius:2px}
 .gearb{position:absolute;right:14px;top:14px;z-index:2;width:40px;height:40px;border-radius:13px;border:0;background:rgba(255,255,255,.2);color:#fff;display:grid;place-items:center}
-.seg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:5px;border-radius:18px;background:var(--bg2);margin-bottom:14px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:5px;border-radius:18px;background:var(--bg2);margin-bottom:14px}
 .seg button{border:0;background:transparent;min-height:44px;border-radius:14px;font-weight:800;font-size:15px;color:var(--sub);transition:background .2s,color .2s}
 .seg button.on{background:var(--card);color:var(--ink);box-shadow:var(--sh)}
 .rank{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:24px;padding:14px 16px;margin-bottom:12px;box-shadow:var(--sh)}
@@ -136,6 +137,28 @@ input{font:inherit}
 .node:disabled{cursor:default}
 .node .c .ic{width:22px;height:22px}
 
+.gcbox{background:var(--card);border-radius:22px;padding:14px;margin-top:12px;box-shadow:var(--sh)}
+.gch{display:flex;gap:12px;align-items:center;margin-bottom:10px}.gch b{display:block;font-size:16px}.gch small{display:block;color:var(--sub);font-size:13px;line-height:1.4}
+.gci{flex:none;width:40px;height:40px;border-radius:13px;background:var(--accs);color:var(--acc2);display:grid;place-items:center}
+.gcr{display:flex;gap:8px}.gcr .inp{min-height:46px}.gcr .b3{flex:none;padding:0 18px}
+.road.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 4px;padding-top:30px}
+.road.grid .node{width:auto;margin:0;transform:none}
+.road.grid .node .c{width:58px;height:54px;font-size:21px}
+.road.grid .node .tip{top:-26px}
+/* 칭호·배지 */
+.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.bd{background:var(--card);border-radius:20px;padding:14px 8px 12px;text-align:center;box-shadow:var(--sh);display:flex;flex-direction:column;align-items:center;gap:6px}
+.bdi{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(160deg,var(--b1),var(--b2));box-shadow:0 4px 0 var(--b2),inset 0 -4px 0 rgba(0,0,0,.12)}
+.bdi .ic{width:28px;height:28px}
+.bd.off .bdi{background:var(--line);box-shadow:none;color:var(--sub)}
+.bd b{font-size:13.5px;line-height:1.25}.bd small{font-size:11.5px;color:var(--sub);line-height:1.3}
+.bd .pg{width:80%;height:5px;border-radius:99px;background:var(--line);overflow:hidden}.bd .pg i{display:block;height:100%;background:var(--acc)}
+.tl{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:18px;padding:11px 14px;margin-top:8px;box-shadow:var(--sh)}
+.tl .tb{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:17px;background:linear-gradient(160deg,var(--t1),var(--t2))}
+.tl.off .tb{background:var(--line);color:var(--sub)}
+.tl b{flex:1;font-size:15.5px}.tl.off b{color:var(--sub)}
+.tl span{font-size:12.5px;color:var(--sub);font-weight:700}
+.tl.cur{outline:2.5px solid var(--acc);outline-offset:-2.5px}
 /* ===== 풀이 ===== */
 #play{display:flex;flex-direction:column;min-height:100dvh}
 .ptop{display:flex;align-items:center;gap:12px}
@@ -264,6 +287,10 @@ input{font:inherit}
  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></symbol>
  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+ <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v3M8 21h8M9 17h6v4H9z"/></symbol>
+ <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M8 7h7"/></symbol>
+ <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/></symbol>
+ <symbol id="i-crown" viewBox="0 0 24 24"><path d="M3 8l4 4 5-7 5 7 4-4-2 11H5z"/></symbol>
  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol>
  <symbol id="i-redo" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></symbol>
  <symbol id="i-dice" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.3" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1.3" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1.3" fill="currentColor"/></symbol>
@@ -285,6 +312,7 @@ input{font:inherit}
 <!-- 홈 -->
 <main id="home" class="scr hide">
  <section class="hero">
+  <button class="musb trob" id="trob" aria-label="칭호와 배지"><svg class="ic"><use href="#i-trophy"/></svg></button>
   <button class="musb" id="musb" aria-label="배경음악"><svg class="ic"><use href="#i-music"/></svg></button>
   <button class="gearb" id="gear" aria-label="설정"><svg class="ic"><use href="#i-gear"/></svg></button>
   <div class="hrow">
@@ -301,15 +329,7 @@ input{font:inherit}
   <button data-s="mg" role="tab">경영학</button>
   <button data-s="ac" role="tab">회계학</button>
   <button data-s="fm" role="tab">재무관리</button>
-  <button data-s="gc" role="tab">기출</button>
  </div>
- <section class="box hide" id="gclock" style="text-align:center;padding:26px 20px">
-  <svg class="ic" style="width:40px;height:40px;color:var(--acc)"><use href="#i-lock"/></svg>
-  <h3 style="justify-content:center;margin:10px 0 6px">경영학 기출은 따로 잠겨 있어요</h3>
-  <p>기출 문제는 출판 문제집 내용이라 긴 비밀번호로 한 번 더 보호해요. 이 기기에서 한 번만 입력하면 돼요.</p>
-  <form id="gcf" autocomplete="on"><input id="gcpw" class="inp" type="password" autocomplete="current-password" placeholder="기출 비밀번호" aria-label="기출 비밀번호" style="text-align:center">
-  <div class="stline" id="gcmsg"></div><button class="b3 w" style="margin-top:12px" type="submit" id="gcbtn">기출 열기</button></form>
- </section>
  <div id="homebody">
  <div class="rank">
   <svg class="medal" id="medal" viewBox="0 0 72 72" aria-hidden="true"></svg>
@@ -319,6 +339,11 @@ input{font:inherit}
   <button class="act rv" id="rvbtn"><span class="ai"><svg class="ic"><use href="#i-redo"/></svg></span><b class="disp">오늘의 복습</b><small id="rvs"></small></button>
   <button class="act rd" id="mxbtn"><span class="ai"><svg class="ic" id="mxic"><use href="#i-dice"/></svg></span><b class="disp" id="mxt">완전 랜덤</b><small id="mxs"></small></button>
  </div>
+ <section class="gcbox hide" id="gclock">
+  <div class="gch"><span class="gci"><svg class="ic"><use href="#i-lock"/></svg></span><div><b>기출 2,938문제 섞기</b><small>잠금을 풀면 경영학 단계와 랜덤에 기출이 자연스럽게 섞여요</small></div></div>
+  <form id="gcf" class="gcr" autocomplete="on"><input id="gcpw" class="inp" type="password" autocomplete="current-password" placeholder="기출 비밀번호" aria-label="기출 비밀번호"><button class="b3 sm" type="submit" id="gcbtn">열기</button></form>
+  <div class="stline" id="gcmsg"></div>
+ </section>
  <div class="ttl"><b class="disp" id="pathlbl"></b><span id="pathsub"></span></div>
  <div id="path"></div>
  </div>
@@ -388,6 +413,15 @@ input{font:inherit}
  </div>
 </main>
 
+<main id="col" class="scr hide">
+ <button class="xbtn" id="colback" aria-label="뒤로"><svg class="ic"><use href="#i-back"/></svg></button>
+ <h2 class="disp" style="font-size:28px;margin:10px 0 4px">칭호 · 배지</h2>
+ <p id="colsub" style="color:var(--sub);margin:0 0 16px;font-size:14px"></p>
+ <div class="ttl" style="margin-top:6px"><b class="disp">배지</b><span id="bdcnt"></span></div>
+ <div class="bgrid" id="bgrid"></div>
+ <div class="ttl"><b class="disp">칭호</b><span id="ttcnt"></span></div>
+ <div id="tlist"></div>
+</main>
 <div class="lvup hide" id="lvup" role="dialog" aria-live="assertive">
  <div class="lvc">
   <div class="lvbw"><div class="burst"></div><div class="lvbadge disp" id="lvbadge"><small>LEVEL</small><b id="lvupn">2</b></div></div>
@@ -457,12 +491,16 @@ const tierOf=l=>TIERC[Math.min(TIERC.length-1,Math.floor((l-1)/5))];
 /* ---------- 단계 ---------- */
 const CC=[["#f26a21","#c7470d"],["#f0484f","#c22a33"],["#9b5cf6","#7337d6"],["#3d74ff","#2453d6"],["#14a9a0","#0c807a"],["#22a35a","#177a42"],["#e59400","#b87400"]];
 let STG={};
-function buildStages(){STG={};for(const s of Object.keys(META.S)){const by={};META.Q.filter(q=>q[1]===s).forEach(q=>(by[q[2]]=by[q[2]]||[]).push(q));
-  STG[s]=META.S[s].CH.map((n,i)=>{const qs=(by[i+1]||[]).sort((a,b)=>a[0]<b[0]?-1:1),list=[];for(let k=0;k<qs.length;k+=STAGE)list.push(qs.slice(k,k+STAGE));
+function mixLists(a,b){if(!b.length)return a;if(!a.length)return b;const out=[];let i=0,j=0;while(i<a.length||j<b.length){if(j>=b.length||(i<a.length&&i/a.length<=j/b.length))out.push(a[i++]);else out.push(b[j++])}return out}
+const SUBJS=["mg","ac","fm"];
+function subjQs(s){return META.Q.filter(q=>q[1]===s||(s==="mg"&&q[1]==="gc"))}
+function buildStages(){STG={};for(const s of SUBJS){const by={},gb={};META.Q.filter(q=>q[1]===s).forEach(q=>(by[q[2]]=by[q[2]]||[]).push(q));
+  const merged=s==="mg"&&META.S.gc;if(merged)META.Q.filter(q=>q[1]==="gc").forEach(q=>(gb[q[2]]=gb[q[2]]||[]).push(q));const pre=merged?"mx":s;
+  STG[s]=META.S[s].CH.map((n,i)=>{const srt=x=>(x||[]).sort((a,b)=>a[0]<b[0]?-1:1),qs=mixLists(srt(by[i+1]),srt(gb[i+1])),list=[];for(let k=0;k<qs.length;k+=STAGE)list.push(qs.slice(k,k+STAGE));
     if(list.length>1&&list[list.length-1].length<5){const l=list.pop();list[list.length-1]=list[list.length-1].concat(l)}
-    return{ch:i+1,name:n,list:list.map((qs,j)=>({id:s+"-"+(i+1)+"-"+(j+1),qs}))}}).filter(c=>c.list.length)}}
+    return{ch:i+1,name:n,list:list.map((qs,j)=>({id:pre+"-"+(i+1)+"-"+(j+1),qs}))}}).filter(c=>c.list.length)}}
 const stars=id=>(ST8.ST[id]||{}).s||0;
-function chapterOpen(s,ci){if(s==="mg"||s==="gc"||ci===0)return true;return STG[s][ci-1].list.every(t=>stars(t.id)>0)}
+function chapterOpen(s,ci){if(s==="mg"||ci===0)return true;return STG[s][ci-1].list.every(t=>stars(t.id)>0)}
 function stageOpen(s,ci,j){return chapterOpen(s,ci)&&(j===0||stars(STG[s][ci].list[j-1].id)>0)}
 const RANKS=[["새싹",0,"#5cb85f","#3d8f41"],["브론즈",.04,"#cd8547","#9c5c27"],["실버",.12,"#a3aebb","#76818e"],["골드",.25,"#f5b616","#c98f00"],["플래티넘",.42,"#2fc0b0","#1b8f84"],["다이아",.62,"#5a95ff","#2f63d8"],["마스터",.82,"#a868ff","#7a3ad6"]];
 function rankOf(s){let got=0,max=0;STG[s].forEach(c=>c.list.forEach(t=>{got+=stars(t.id);max+=3}));const r=max?got/max:0;let i=0;while(i+1<RANKS.length&&r>=RANKS[i+1][1])i++;
@@ -476,7 +514,7 @@ const sfx={ok:c=>tone([660+Math.min(c,8)*35,990+Math.min(c,8)*35],.07,"triangle"
 const buzz=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
 
 /* ---------- 화면 ---------- */
-function show(s){["lock","home","play","res","set"].forEach(x=>$(x).classList.toggle("hide",x!==s));window.scrollTo(0,0)}
+function show(s){["lock","home","play","res","set","col"].forEach(x=>$(x).classList.toggle("hide",x!==s));window.scrollTo(0,0)}
 function toast(t){const e=$("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),2400)}
 const starSvg=on=>'<svg class="ic'+(on?" on":"")+'" viewBox="0 0 24 24"><use href="#i-star"/></svg>';
 function medal(R){const id="mg"+R.i;return '<defs><linearGradient id="'+id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+R.col+'"/><stop offset="1" stop-color="'+R.col2+'"/></linearGradient></defs>'+
@@ -490,14 +528,14 @@ function renderHome(){
   $("strk").textContent=streak()+"일 연속";$("todayc").textContent="오늘 "+dayCount(today())+"문제";
   syncBadge();
   const s=CFG.subj;document.querySelectorAll(".seg button").forEach(b=>{b.classList.toggle("on",b.dataset.s===s);b.setAttribute("aria-selected",b.dataset.s===s)});
-  const gcLocked=s==="gc"&&!META.S.gc;$("gclock").classList.toggle("hide",!gcLocked);$("homebody").classList.toggle("hide",gcLocked);if(gcLocked)return;
+  $("gclock").classList.toggle("hide",!(s==="mg"&&!META.S.gc&&KINFO&&KINFO.gsalt));
   const R=rankOf(s);$("medal").innerHTML=medal(R);$("rkn").textContent=META.S[s].name+" · "+R.name;
   $("rks").textContent=R.next?"별 "+R.got+"개 · "+R.next+"까지 "+(R.need-R.got)+"개 더":"별 "+R.got+" / "+R.max+" · 최고 등급";
   $("rkb").style.width=(R.next?(R.got-R.lo)/Math.max(1,R.need-R.lo)*100:100)+"%";
   const dl=dueList();$("rvs").textContent=dl.length?dl.length+"문제가 기다려요":"복습할 문제 없음";$("rvbtn").disabled=!dl.length;
-  if(s==="mg"||s==="gc"){$("mxt").textContent="완전 랜덤";$("mxs").textContent=META.S[s].name+" 전체 "+META.Q.filter(q=>q[1]===s).length+"문제에서 10개";$("mxbtn").disabled=false;$("mxic").innerHTML='<use href="#i-dice"/>'}
+  if(s==="mg"){const n=subjQs("mg").length;$("mxt").textContent="완전 랜덤";$("mxs").textContent=(META.S.gc?"경영학+기출 ":"경영학 전체 ")+n.toLocaleString()+"문제에서 10개";$("mxbtn").disabled=false;$("mxic").innerHTML='<use href="#i-dice"/>'}
   else{const seen=META.Q.filter(q=>q[1]===s&&ST8.P[q[0]]).length;$("mxt").textContent="섞어 풀기";$("mxs").textContent=seen<4?"단계를 먼저 풀어보세요":"푼 "+seen+"문제에서 10개";$("mxbtn").disabled=seen<4;$("mxic").innerHTML='<use href="#i-shuffle"/>'}
-  $("pathlbl").textContent=META.S[s].name+" 단계";$("pathsub").textContent=(s==="mg"||s==="gc")?"어느 장부터 시작해도 돼요":"앞 장을 통과하면 다음 장이 열려요";
+  $("pathlbl").textContent=META.S[s].name+(s==="mg"&&META.S.gc?"·기출":"")+" 단계";$("pathsub").textContent=s==="mg"?"어느 장부터 시작해도 돼요":"앞 장을 통과하면 다음 장이 열려요";
   const P=$("path");P.innerHTML="";
   let nextAt=null;STG[s].some((c,ci)=>c.list.some((t,j)=>{if(stageOpen(s,ci,j)&&!stars(t.id)){nextAt=[ci,j];return true}}));
   if(OPENCH[s]===undefined)OPENCH[s]=nextAt?nextAt[0]:0;
@@ -505,7 +543,7 @@ function renderHome(){
     const d=document.createElement("section");d.className="chap"+(open?"":" lock")+(got===max?" done":"")+(ex?" exp":"");d.style.setProperty("--cc",c1);d.style.setProperty("--ccd",c2);
     d.innerHTML='<button class="chb" aria-expanded="'+ex+'"><span class="chn">'+c.ch+'장</span><span class="cht">'+esc(c.name)+'</span><span class="chbar"><i style="width:'+(got/max*100)+'%"></i></span><span class="chs"><svg class="ic"><use href="#i-star"/></svg>'+got+'/'+max+'</span><svg class="ic chev"><use href="#i-chev"/></svg></button>';
     d.querySelector(".chb").onclick=()=>{OPENCH[s]=ex?-1:ci;renderHome();if(!ex)setTimeout(()=>{const el=$("path").children[ci];if(el)el.scrollIntoView({behavior:"smooth",block:"nearest"})},30)};
-    if(ex){const road=document.createElement("div");road.className="road";d.appendChild(road);
+    if(ex){const road=document.createElement("div");road.className="road"+(c.list.length>6?" grid":"");d.appendChild(road);
     c.list.forEach((t,j)=>{const so=stageOpen(s,ci,j),sv=stars(t.id),b=document.createElement("button");
       const isNext=nextAt&&nextAt[0]===ci&&nextAt[1]===j;
       b.className="node"+(so?" open":"")+(sv?" clr":"")+(isNext?" next":"");b.disabled=!so;
@@ -516,12 +554,41 @@ function renderHome(){
     P.appendChild(d)});
 }
 
+/* ---------- 칭호·배지 ---------- */
+function bestStreak(){const ds=Object.keys(ST8.D).filter(d=>dayCount(d)>0).sort();let b=0,c=0,prev=null;for(const d of ds){const t=new Date(d+"T00:00:00").getTime();c=prev!==null&&Math.round((t-prev)/DAY)===1?c+1:1;b=Math.max(b,c);prev=t}return b}
+function statsNow(){let ans=0,cor=0,mas=0,gc=0;for(const k in ST8.P){const p=ST8.P[k];ans+=p.c+p.w;cor+=p.c;if(p.b>=3)mas++;if(k.startsWith("gc")&&p.c>0)gc++}
+  let st=0,perf=0;for(const k in ST8.ST){st+=ST8.ST[k].s;if(ST8.ST[k].s===3)perf++}
+  const rk={};SUBJS.forEach(x=>{try{rk[x]=rankOf(x).i}catch(e){rk[x]=0}});
+  return{ans,cor,mas,gc,st,perf,streak:bestStreak(),days:Object.keys(ST8.D).filter(d=>dayCount(d)>0).length,rk,lv:lvOf(totalXP()).l}}
+const BC=[["#d99a5b","#a8672b"],["#b3bdc8","#7f8b98"],["#ffcf3d","#d99300"],["#9b6bff","#6a35d6"]];
+const BADGES=[
+ ["b1","첫걸음","문제 1개 풀기","i-ok",S=>S.ans,1,0],["b2","백문백답","문제 100개 풀기","i-book",S=>S.ans,100,0],["b3","천 문제 돌파","문제 1,000개 풀기","i-book",S=>S.ans,1000,1],["b4","오천 문제","문제 5,000개 풀기","i-book",S=>S.ans,5000,2],
+ ["b5","정답 수집가","정답 500개","i-ok",S=>S.cor,500,1],["b6","정답 장인","정답 3,000개","i-ok",S=>S.cor,3000,2],
+ ["b7","마스터 10","10문제 마스터(3연속 정답)","i-crown",S=>S.mas,10,0],["b8","마스터 100","100문제 마스터","i-crown",S=>S.mas,100,1],["b9","마스터 500","500문제 마스터","i-crown",S=>S.mas,500,2],
+ ["b10","별 30개","별 30개 모으기","i-star",S=>S.st,30,0],["b11","별 150개","별 150개 모으기","i-star",S=>S.st,150,1],["b12","별 500개","별 500개 모으기","i-star",S=>S.st,500,2],
+ ["b13","첫 만점","별 3개 단계 1개","i-star",S=>S.perf,1,0],["b14","만점 20","별 3개 단계 20개","i-star",S=>S.perf,20,2],
+ ["b15","3일 연속","3일 연속 공부","i-fire",S=>S.streak,3,0],["b16","7일 연속","7일 연속 공부","i-fire",S=>S.streak,7,1],["b17","30일 연속","30일 연속 공부","i-fire",S=>S.streak,30,3],
+ ["b18","출석 30일","공부한 날 30일","i-cal",S=>S.days,30,1],["b19","기출 500","기출 500문제 맞히기","i-trophy",S=>S.gc,500,1],["b20","기출 정복","기출 2,000문제 맞히기","i-trophy",S=>S.gc,2000,3],
+ ["b21","경영학 골드","경영학 골드 등급","i-trophy",S=>S.rk.mg>=3?1:0,1,2],["b22","회계학 골드","회계학 골드 등급","i-trophy",S=>S.rk.ac>=3?1:0,1,2],["b23","재무관리 골드","재무관리 골드 등급","i-trophy",S=>S.rk.fm>=3?1:0,1,2],["b24","마스터 등급","아무 과목 마스터 등급","i-crown",S=>Math.max(S.rk.mg,S.rk.ac,S.rk.fm)>=6?1:0,1,3],
+ ["b25","Lv.10","레벨 10 달성","i-crown",S=>S.lv,10,1],["b26","Lv.30","레벨 30 달성","i-crown",S=>S.lv,30,3]];
+function earnedBadges(S){return BADGES.filter(b=>b[4](S)>=b[5]).map(b=>b[0])}
+function checkBadges(silent){const S=statsNow(),now=earnedBadges(S),had=LS.get("badges",null);LS.set("badges",now);if(silent||!had)return;
+  const nw=now.filter(x=>!had.includes(x));nw.forEach((id,i)=>{const b=BADGES.find(x=>x[0]===id);setTimeout(()=>{toast("새 배지 획득! "+b[1]);sfx.win()},1400+i*2600)})}
+function renderCol(){const S=statsNow(),L=lvOf(totalXP()),now=earnedBadges(S);
+  $("colsub").textContent="Lv."+L.l+" "+titleOf(L.l)+" · 푼 문제 "+S.ans.toLocaleString()+" · 마스터 "+S.mas;
+  $("bdcnt").textContent=now.length+" / "+BADGES.length;
+  $("bgrid").innerHTML=BADGES.map(b=>{const v=b[4](S),on=v>=b[5],[c1,c2]=BC[b[6]];return '<div class="bd'+(on?"":" off")+'" style="--b1:'+c1+';--b2:'+c2+'"><span class="bdi"><svg class="ic"><use href="#'+b[3]+'"/></svg></span><b>'+b[1]+'</b><small>'+b[2]+'</small>'+(on||b[5]===1?"":'<span class="pg"><i style="width:'+Math.min(100,v/b[5]*100)+'%"></i></span><small>'+Math.min(v,b[5]).toLocaleString()+" / "+b[5].toLocaleString()+'</small>')+'</div>'}).join("");
+  const got=TITLES.filter(t=>L.l>=t[0]).length;$("ttcnt").textContent=got+" / "+TITLES.length;
+  $("tlist").innerHTML=TITLES.map((t,i)=>{const on=L.l>=t[0],cur=on&&(i===TITLES.length-1||L.l<TITLES[i+1][0]),[c1,c2]=tierOf(t[0]);return '<div class="tl'+(on?"":" off")+(cur?" cur":"")+'" style="--t1:'+c1+';--t2:'+c2+'"><span class="tb disp">'+t[0]+'</span><b>'+t[1]+'</b><span>'+(cur?"지금 칭호":on?"획득":"Lv."+t[0]+" 달성 시")+'</span></div>'}).join("")}
+$("trob").onclick=()=>{renderCol();show("col")};$("colback").onclick=()=>{renderHome();show("home")};
+document.querySelector(".ring").onclick=()=>{renderCol();show("col")};
+
 /* ---------- 풀이 ---------- */
 let G=null;const OPENCH={};
 function startStage(s,ci,j){const t=STG[s][ci].list[j];run({kind:"stage",s,ci,j,id:t.id,title:STG[s][ci].ch+"장 "+(j+1)+"단계",qs:shuffle(t.qs.slice())})}
 function startReview(){const l=shuffle(dueList()).slice(0,10);if(l.length)run({kind:"review",title:"오늘의 복습",qs:l})}
 function startMix(){const s=CFG.subj;let l;
-  if(s==="mg"||s==="gc"){l=shuffle(META.Q.filter(q=>q[1]===s)).slice(0,10);run({kind:"mix",title:META.S[s].name+" 완전 랜덤",qs:l});return}
+  if(s==="mg"){l=shuffle(subjQs("mg")).slice(0,10);run({kind:"mix",title:"경영학 완전 랜덤",qs:l});return}
   l=META.Q.filter(q=>q[1]===s&&ST8.P[q[0]]);l.sort((a,b)=>(ST8.P[a[0]].b-ST8.P[b[0]].b)||(Math.random()-.5));run({kind:"mix",title:META.S[s].name+" 섞어 풀기",qs:shuffle(l.slice(0,10))})}
 function run(o){const x0=totalXP();G=Object.assign(o,{i:0,ok:0,combo:0,max:0,wrong:[],lock:false,xp0:x0,lv:lvOf(x0).l,rank0:o.s?rankOf(o.s).i:null});setCombo(0);drawPxp(0);show("play");render()}
 function drawPxp(gain,bump){const L=lvOf(totalXP());$("pxl").textContent="Lv."+L.l;$("pxb").style.width=(L.cur/L.need*100)+"%";$("pxv").textContent="+"+gain+" XP";if(bump){const e=$("pxv");e.classList.remove("bump");void e.offsetWidth;e.classList.add("bump")}}
@@ -584,7 +651,7 @@ function finish(){
   const wl=$("wl");wl.innerHTML=g.wrong.length?'<h3>틀린 문제 다시 보기</h3>':"";
   g.wrong.forEach(q=>{const d=document.createElement("div");d.className="wi";const b=document.createElement("b");b.textContent="정답 "+(q[3]==="ox"?(q[6]?"O":"X"):q[5][q[6]]);const t=document.createElement("div");t.textContent=q[4];const e=document.createElement("div");e.style.cssText="color:var(--sub);margin-top:4px";e.textContent=q[7];d.append(b,t,e);wl.appendChild(d)});
   show("res");if(st>=2||L.l>L0.l){sfx.win();confetti()}else sfx.end();
-  syncNow();
+  syncNow();checkBadges();
 }
 function G0lv(l){levelUp(l)}
 function animXp(gain,L0,L){const el=$("rxp"),bar=$("rxpb"),t0=performance.now(),D=1100;bar.style.transition="none";bar.style.width=(L0.cur/L0.need*100)+"%";
@@ -593,7 +660,7 @@ function animXp(gain,L0,L){const el=$("rxp"),bar=$("rxpb"),t0=performance.now(),
 $("rhome").onclick=()=>{renderHome();show("home")};
 $("rvbtn").onclick=startReview;$("mxbtn").onclick=startMix;
 document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{CFG.subj=b.dataset.s;saveCfg();renderHome()});
-if(!["mg","ac","fm","gc"].includes(CFG.subj))CFG.subj="mg";
+if(!["mg","ac","fm"].includes(CFG.subj))CFG.subj="mg";
 document.addEventListener("keydown",e=>{
   if(!$("lock").classList.contains("hide")){if(/^[0-9]$/.test(e.key))pinKey(e.key);else if(e.key==="Backspace")pinKey("del");return}
   if(!G)return;if($("sheet").classList.contains("on")){if(e.key==="Enter"||e.key===" "){e.preventDefault();$("shgo").click()}return}
@@ -713,10 +780,10 @@ document.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&["+","-","=",
 /* ---------- 시작 ---------- */
 $("gcf").onsubmit=async e=>{e.preventDefault();const pw=$("gcpw").value.trim();if(!pw)return;if(!KINFO.gsalt){$("gcmsg").textContent="아직 기출 문제가 준비되지 않았어요";return}
   $("gcbtn").disabled=true;$("gcbtn").textContent="여는 중…";$("gcmsg").textContent="";$("gcmsg").className="stline";
-  try{const k=await deriveG(pw);await loadGc(k);await kvSet("gkey",k);await kvSet("gsalt",KINFO.gsalt);buildStages();renderHome();toast("기출 "+META.Q.filter(q=>q[1]==="gc").length+"문제를 열었어요")}
+  try{const k=await deriveG(pw);await loadGc(k);await kvSet("gkey",k);await kvSet("gsalt",KINFO.gsalt);buildStages();renderHome();toast("기출 "+META.Q.filter(q=>q[1]==="gc").length+"문제가 경영학에 섞였어요")}
   catch(err){$("gcmsg").textContent=err&&err.name==="OperationError"?"비밀번호가 맞지 않아요":"불러오지 못했어요. 인터넷 연결을 확인해 주세요";$("gcmsg").className="stline bad"}
   finally{$("gcbtn").disabled=false;$("gcbtn").textContent="기출 열기"}};
-async function ready(){await tryGc();buildStages();renderHome();show("home");if(JUSTLINKED){JUSTLINKED=false;toast("다른 기기와 연결됐어요 · 기록을 맞추는 중")}if(CFG.tok)syncNow()}
+async function ready(){await tryGc();buildStages();checkBadges(true);renderHome();show("home");if(JUSTLINKED){JUSTLINKED=false;toast("다른 기기와 연결됐어요 · 기록을 맞추는 중")}if(CFG.tok)syncNow()}
 (async()=>{
   try{KINFO=await (await fetch("data/k.json",{cache:"no-cache"})).json();kvSet("kinfo",KINFO)}catch(e){KINFO=await kvGet("kinfo")}
   const k=await kvGet("key"),s=await kvGet("salt");
