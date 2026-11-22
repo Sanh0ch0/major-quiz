@@ -867,7 +867,7 @@ function animXp(gain,L0,L){const el=$("rxp"),bar=$("rxpb"),t0=performance.now(),
     const pos=L0.cur/L0.need+e*(ups+L.cur/L.need-L0.cur/L0.need);bar.style.width=(k===1?L.cur/L.need*100:(pos%1)*100)+"%";if(k<1)requestAnimationFrame(f)})(t0)}
 $("rhome").onclick=()=>{renderHome();show("home")};
 $("rvbtn").onclick=startReview;$("mxbtn").onclick=startMix;
-document.querySelectorAll(".seg button[data-s]").forEach(b=>b.onclick=()=>{CFG.subj=b.dataset.s;saveCfg();renderHome()});
+document.querySelectorAll(".seg button[data-s]").forEach(b=>b.onclick=()=>{CFG.subj=b.dataset.s;saveCfg();renderHome();updateNav()});
 if(!["mg","ac","fm"].includes(CFG.subj))CFG.subj="mg";
 document.addEventListener("keydown",e=>{
   if(!$("lock").classList.contains("hide")){if(/^[0-9]$/.test(e.key))pinKey(e.key);else if(e.key==="Backspace")pinKey("del");return}
