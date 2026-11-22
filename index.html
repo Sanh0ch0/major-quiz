@@ -776,7 +776,9 @@ let G=null;const OPENCH={};
 function startStage(s,ci,j){const t=STG[s][ci].list[j];run({kind:"stage",s,ci,j,id:t.id,title:STG[s][ci].ch+"장 "+(j+1)+"단계",qs:shuffle(t.qs.slice())})}
 function startReview(){const l=shuffle(dueList()).slice(0,10);if(l.length)run({kind:"review",title:"오늘의 복습",qs:l})}
 function mixBuckets(all){const A=[],B=[],C=[];all.forEach(q=>{const p=ST8.P[q[0]];
-  if(!answered(p))A.push(q);else if(!(p.b>0))B.push(q);else C.push(q)});return{A,B,C}}
+  if(!answered(p))A.push(q);
+  else if(p.c>0&&(p.b>0||!(p.w>0)))C.push(q);
+  else B.push(q)});return{A,B,C}}
 function mixSelect(A,B,C,need){const a=shuffle(A.slice()),b=shuffle(B.slice()),c=shuffle(C.slice());
   const nA=Math.min(need,a.length),nB=Math.min(need-nA,b.length),nC=Math.min(need-nA-nB,c.length);
   return{a:a.slice(0,nA),b:b.slice(0,nB),c:c.slice(0,nC),nA,nB,nC}}
