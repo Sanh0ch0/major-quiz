@@ -327,6 +327,51 @@ input{font:inherit}
 .gl .bar{margin-top:6px}
 .inp2{width:100%;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font-size:14.5px;padding:10px 12px;min-height:92px;resize:vertical;font-family:inherit;line-height:1.5}
 .inp2:focus{border-color:var(--acc);outline:none}
+/* ===== 데스크톱 (넓은 창) ===== */
+.bbrand,.kbh{display:none}
+@media (min-width:900px){
+  body.nav{--navh:0px;padding-left:232px}
+  .bnav{left:0;top:0;bottom:0;transform:none;width:216px;max-width:none;border-radius:0 26px 26px 0;border-top:0;border-right:1px solid var(--line);padding:26px 14px;box-shadow:8px 0 30px rgba(90,50,20,.06);display:flex;flex-direction:column;gap:18px}
+  .bbrand{display:flex;align-items:center;gap:10px;padding:0 8px 6px;font-size:20px}
+  .bbrand img{width:38px;height:38px;border-radius:11px;box-shadow:var(--sh)}
+  .bnavin{grid-template-columns:1fr;gap:4px}
+  .bnav button{flex-direction:row;justify-content:flex-start;gap:12px;font-size:15.5px;padding:12px 14px;letter-spacing:-.02em}
+  .bnav button.on{background:light-dark(rgba(242,106,33,.12),rgba(242,106,33,.2))}
+  .bnav button.on::after{left:0;top:50%;transform:translateY(-50%);width:4px;height:22px}
+  .bnav button:hover{color:var(--ink)}
+  .scr{max-width:1100px;padding:30px 40px 44px}
+  /* 홈 */
+  #homebody{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;align-items:start}
+  #homebody>.acts{grid-column:1}#homebody>#gclock{grid-column:2;margin:0}
+  #homebody:has(#gclock.hide)>.acts{grid-column:1/-1}
+  #homebody>.ttl,#homebody>#path{grid-column:1/-1}
+  #path{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px;align-items:start}
+  #path>.mgrow,#path>.chap{margin:0}
+  #path>.chap.exp{grid-column:1/-1}
+  .acts .act{min-height:150px}
+  /* 풀이 */
+  #play{max-width:1180px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:auto auto auto auto 1fr;column-gap:30px;align-content:start}
+  #play>.ptop,#play>.pxp,#play>.qmeta{grid-column:1/-1}
+  #play>.qcard{grid-column:1;grid-row:4;min-height:340px;font-size:22px;padding:34px 32px}
+  #play>.ans{grid-column:2;grid-row:4;margin-top:0;align-self:start}
+  #play>.ans.ox{padding-top:0;margin-top:0}
+  #play>.ans.ox .ab{min-height:160px;font-size:72px}
+  #play>.kbh{display:block;grid-column:1/-1;grid-row:5;align-self:end;text-align:center;color:var(--sub);font-size:13px;margin:22px 0 0}
+  .kbh kbd{display:inline-block;min-width:22px;padding:1px 6px;margin:0 2px;border:1px solid var(--line);border-bottom-width:3px;border-radius:7px;background:var(--card);font:700 12px/1.5 inherit;color:var(--ink)}
+  .sheet{left:auto;right:32px;bottom:32px;width:460px;max-width:calc(100vw - 64px);border-radius:26px;margin:0;max-height:min(70vh,640px);padding-bottom:20px}
+  /* 결과·통계·설정 */
+  #res{max-width:680px}
+  .stgrid{grid-template-columns:repeat(4,1fr)}
+  .bgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  #set{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;align-items:start}
+  #set>*:not(.box){grid-column:1/-1}
+  #lock{padding-top:12vh}
+}
+@media (min-width:900px) and (hover:hover){
+  .op:not(:disabled):hover{border-color:var(--acc)}
+  .mgrow:hover,.act:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(90,50,20,.08),0 14px 30px rgba(90,50,20,.12)}
+  .mgrow,.act{transition:transform .15s,box-shadow .15s}
+}
 /* ===== 화면 전환 ===== */
 .scr.tf{animation:tFwd .38s cubic-bezier(.2,.85,.25,1) both}
 .scr.tb{animation:tBack .38s cubic-bezier(.2,.85,.25,1) both}
@@ -463,6 +508,7 @@ input{font:inherit}
  <div class="qmeta"><span class="tp" id="qtp"></span><span id="qch"></span></div>
  <div class="qcard" id="qcard"></div>
  <div class="ans" id="ans"></div>
+ <p class="kbh">객관식 <kbd>1</kbd>~<kbd>5</kbd> · OX <kbd>O</kbd> <kbd>X</kbd> · 다음 <kbd>Enter</kbd> · 그만하기 <kbd>Esc</kbd></p>
 </main>
 
 <!-- 결과 -->
@@ -520,7 +566,7 @@ input{font:inherit}
   <p>비밀번호를 다시 입력해야 열려요. 학습 기록은 그대로 남아요.</p>
   <button class="b3 ghost w sm" id="lockout">잠그기</button>
  </div>
- <p style="text-align:center;font-size:12px;color:var(--sub);margin:14px 0 0">버전 2026.11.23-3 · CBT 기록 이전 포함</p>
+ <p style="text-align:center;font-size:12px;color:var(--sub);margin:14px 0 0">버전 2026.11.23-4 · 데스크톱 화면</p>
 </main>
 
 <div class="lvup hide" id="lvup" role="dialog" aria-live="assertive">
@@ -541,6 +587,7 @@ input{font:inherit}
 <div class="toast" id="toast" role="status"></div>
 
 <nav class="bnav hide" id="bnav" aria-label="과목과 화면 이동">
+ <div class="bbrand disp"><img src="icons/icon-180.png?v=3" alt="">전공 퀴즈</div>
  <div class="bnavin">
   <button type="button" data-nav="mg"><svg class="ic"><use href="#i-brief"/></svg><span>경영학</span></button>
   <button type="button" data-nav="ac"><svg class="ic"><use href="#i-calc"/></svg><span>회계학</span></button>
@@ -912,7 +959,10 @@ document.querySelectorAll(".seg button[data-s]").forEach(b=>b.onclick=()=>{CFG.s
 if(!["mg","ac","fm"].includes(CFG.subj))CFG.subj="mg";
 document.addEventListener("keydown",e=>{
   if(!$("lock").classList.contains("hide")){if(/^[0-9]$/.test(e.key))pinKey(e.key);else if(e.key==="Backspace")pinKey("del");return}
-  if(!G)return;if($("sheet").classList.contains("on")){if(e.key==="Enter"||e.key===" "){e.preventDefault();$("shgo").click()}return}
+  if(!$("lvup").classList.contains("hide")){if(e.key==="Escape")$("lvupok").click();return}
+  if(!G){if(!$("res").classList.contains("hide")&&e.key==="Enter"){e.preventDefault();($("rnext")&&!$("rnext").classList.contains("hide")?$("rnext"):$("ragain")).click()}else if(!$("res").classList.contains("hide")&&e.key==="Escape")$("rhome").click();return}
+  if(e.key==="Escape"){$("quit").click();return}
+  if($("sheet").classList.contains("on")){if(e.key==="Enter"||e.key===" "){e.preventDefault();$("shgo").click()}return}
   const k=e.key.toLowerCase(),q=G.qs[G.i];if(q[3]==="ox"){if(k==="o")$("ans").children[0].click();else if(k==="x")$("ans").children[1].click()}else if(/^[1-5]$/.test(k)&&$("ans").children[+k-1])$("ans").children[+k-1].click()});
 
 /* ---------- 동기화 (GitHub 비공개 Gist) ---------- */
