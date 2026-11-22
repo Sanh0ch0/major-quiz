@@ -1,5 +1,5 @@
 // 앱 화면은 새 버전 우선, 문제 파일(?v= 붙은 암호화 데이터)은 한 번 받으면 기기에 저장해 두고 재사용
-const SHELL = "mq-shell-v8", DATA = "mq-data-v2";
+const SHELL = "mq-shell-v9", DATA = "mq-data-v2";
 self.addEventListener("install", e => { self.skipWaiting(); e.waitUntil(caches.open(SHELL).then(c => c.addAll(["./", "index.html", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-180.png", "icons/icon-512.png", "icons/icon-maskable-512.png"]).catch(() => {}))); });
 self.addEventListener("activate", e => e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== SHELL && k !== DATA).map(k => caches.delete(k)))).then(() => self.clients.claim())));
 self.addEventListener("fetch", e => {
