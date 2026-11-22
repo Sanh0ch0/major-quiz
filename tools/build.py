@@ -44,7 +44,9 @@ def check(q, s):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--password", required=True)
-    pw = ap.parse_args().password
+    ap.add_argument("--gc-password", help="기출 묶음(src/new/gc/*.jsonl)용 별도 비밀번호")
+    args = ap.parse_args()
+    pw = args.password
     if len(pw) < 4:
         sys.exit("비밀번호는 4자 이상으로 해 주세요.")
     Q, seq = [], {}
@@ -63,7 +65,30 @@ def main():
         shutil.rmtree(OUT)
     OUT.mkdir()
     (OUT / "m.bin").write_bytes(iv + AESGCM(key).encrypt(iv, json.dumps(meta, ensure_ascii=False).encode(), None))
-    (OUT / "k.json").write_text(json.dumps({"salt": base64.b64encode(salt).decode(), "it": ITER, "v": 2}))
+    kinfo = {"salt": base64.b64encode(salt).decode(), "it": ITER, "v": 2}
+    gfiles = sorted(glob.glob(str(NEW / "gc" / "ch*.jsonl")))
+    if gfiles and args.gc_password:
+        GQ, skipped = [], 0
+        for f in gfiles:
+            for line in Path(f).read_text("utf-8").splitlines():
+                if not line.strip():
+                    continue
+                r = json.loads(line)
+                if r.get("skip"):
+                    skipped += 1
+                    continue
+                ch = int(Path(f).stem[2:])
+                o = [x for x in r["o"] if str(x).strip()]
+                assert 4 <= len(o) <= 5 and 0 <= r["a"] < len(o), (f, r["n"])
+                GQ.append([f"gc{r['n']:04d}", "gc", ch, "mc5", r["q"], o, r["a"], r.get("ex", ""), r.get("src", "")])
+        gsalt = os.urandom(16)
+        gkey = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=gsalt, iterations=ITER).derive(args.gc_password.encode())
+        giv = os.urandom(12)
+        gmeta = {"S": {"gc": {"name": "기출", "CH": CH["mg"]}}, "Q": GQ}
+        (OUT / "g.bin").write_bytes(giv + AESGCM(gkey).encrypt(giv, json.dumps(gmeta, ensure_ascii=False).encode(), None))
+        kinfo["gsalt"] = base64.b64encode(gsalt).decode()
+        print(f"gc: 기출 {len(GQ)}문제 (복원 불가로 제외 {skipped})")
+    (OUT / "k.json").write_text(json.dumps(kinfo))
     for s in ("mg", "ac", "fm"):
         n = [q for q in Q if q[1] == s]
         print(f"{s}: {len(n)}문제 (4지선다 {sum(q[3]=='mc' for q in n)}, OX {sum(q[3]=='ox' for q in n)})")
