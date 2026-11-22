@@ -53,7 +53,7 @@ input{font:inherit}
 
 /* ===== 잠금 (카카오톡 스타일) ===== */
 #lock{display:flex;flex-direction:column;align-items:center;padding-top:calc(var(--sa-t) + 8vh);text-align:center}
-#lock img{width:84px;height:84px;border-radius:22px;box-shadow:var(--sh)}
+#lock img{width:92px;height:92px;border-radius:24px;box-shadow:0 10px 26px rgba(120,60,20,.16)}
 #lock h1{font-size:22px;margin:22px 0 6px;font-weight:800;font-family:inherit;letter-spacing:-.02em}
 #lkmsg{min-height:22px;font-size:14px;color:var(--sub)}
 #lkmsg.err{color:var(--x);font-weight:700}
@@ -69,7 +69,7 @@ input{font:inherit}
 .pad button:empty{visibility:hidden}
 
 /* ===== 홈 ===== */
-.hero{position:relative;border-radius:28px;padding:18px 18px 16px;color:#fff;background:linear-gradient(135deg,#ff8a3d 0%,#f26a21 45%,#e8475a 100%);box-shadow:0 12px 30px rgba(242,106,33,.28);overflow:hidden;margin-bottom:14px}
+.hero{position:relative;border-radius:28px;padding:18px 18px 16px;color:#fff;background:linear-gradient(135deg,#ffa04d 0%,#f5772b 48%,#ea5a12 100%);box-shadow:0 12px 30px rgba(242,106,33,.28);overflow:hidden;margin-bottom:14px}
 .hero::after{content:"";position:absolute;right:-40px;top:-50px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.12)}
 .hrow{display:flex;align-items:center;gap:14px;position:relative;z-index:1}
 .ring{flex:none;width:70px;height:70px;position:relative}
@@ -86,6 +86,7 @@ input{font:inherit}
 .hchip .dot.off{background:rgba(255,255,255,.5)}.hchip .dot.bad{background:#ffd0d6}
 .musb{position:absolute;right:62px;top:14px;z-index:2;width:40px;height:40px;border-radius:13px;border:0;background:rgba(255,255,255,.2);color:#fff;display:grid;place-items:center}
 .trob{right:110px}
+.stb{right:158px}
 .musb.off{opacity:.55}.musb.off::after{content:"";position:absolute;width:26px;height:2.5px;background:#fff;transform:rotate(-45deg);border-radius:2px}
 .gearb{position:absolute;right:14px;top:14px;z-index:2;width:40px;height:40px;border-radius:13px;border:0;background:rgba(255,255,255,.2);color:#fff;display:grid;place-items:center}
 .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:5px;border-radius:18px;background:var(--bg2);margin-bottom:14px}
@@ -102,7 +103,7 @@ input{font:inherit}
 .act:active{transform:scale(.97)}
 .act .ai{width:36px;height:36px;border-radius:12px;background:rgba(255,255,255,.22);display:grid;place-items:center}
 .act b{font-size:18px;line-height:1.15}.act small{font-size:12.5px;opacity:.92;line-height:1.35}
-.act.rv{background:linear-gradient(140deg,#ff6b81,#e8364f)}
+.act.rv{background:linear-gradient(140deg,#ff9a52,#ee5a16)}
 .act.rd{background:linear-gradient(140deg,#5b8cff,#3159e0)}
 .act:disabled{background:var(--bg2);color:var(--sub)}.act:disabled .ai{background:var(--line)}
 .ttl{display:flex;align-items:baseline;justify-content:space-between;margin:22px 4px 2px}
@@ -274,6 +275,56 @@ input{font:inherit}
 @keyframes bob{50%{transform:translateY(-4px)}}
 @keyframes blink{50%{opacity:.3}}
 @keyframes land{0%{transform:scale(.2) rotate(-30deg);opacity:0}100%{transform:none;opacity:1}}
+/* ===== 경영학 진행 (푼 문제 수 / 전체 문제 수) ===== */
+.mgsum{background:var(--card);border-radius:22px;padding:16px 16px 14px;box-shadow:var(--sh);margin-top:10px}
+.mgsh{display:flex;justify-content:space-between;align-items:baseline}
+.mgsh b{font-size:17px}.mgsh span{font-size:23px;color:var(--acc2)}
+.mgsum .bar{margin-top:9px;height:12px}
+.mgsum .bar i{background:linear-gradient(90deg,#ffbf8b,var(--acc))}
+.mgmeta{display:flex;justify-content:space-between;gap:8px;margin-top:9px;font-size:12.5px;color:var(--sub);font-weight:700}
+.mgmeta b{color:var(--ink)}
+.mgrow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;background:var(--card);border-radius:18px;padding:11px 13px;box-shadow:var(--sh);margin-top:8px;transition:transform .07s}
+.mgrow:active{transform:scale(.985)}
+.mgnum{flex:none;width:40px;height:40px;border-radius:13px;display:grid;place-items:center;font-size:17px;background:var(--pc);color:var(--pcf)}
+.mgbody{flex:1;min-width:0}
+.mgname{display:block;font-weight:800;font-size:14.5px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mgbar{display:block;height:7px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:7px}
+.mgbar i{display:block;height:100%;border-radius:99px;background:var(--pc)}
+.mgrt{flex:none;text-align:right}
+.mgrt b{display:block;font-size:15px;font-variant-numeric:tabular-nums;letter-spacing:0}
+.mgrt small{font-size:11.5px;color:var(--sub);font-weight:700}
+/* ===== 통계 ===== */
+.stgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px}
+.stc{background:var(--card);border-radius:20px;padding:14px;box-shadow:var(--sh)}
+.stc b{display:block;font-size:25px;line-height:1.1}
+.stc span{font-size:12.5px;color:var(--sub);font-weight:700}
+.subj{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:20px;padding:13px 14px;box-shadow:var(--sh);margin-top:8px}
+.subj .sg{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:13px;font-weight:800;background:linear-gradient(160deg,var(--g1),var(--g2))}
+.subj .sb{flex:1;min-width:0}
+.subj b{font-size:15px}.subj small{display:block;color:var(--sub);font-size:12px;font-weight:700;margin-top:1px}
+.subj .bar{margin-top:6px}
+.chart{display:flex;align-items:flex-end;gap:5px;height:124px;background:var(--card);border-radius:20px;padding:14px 12px 8px;box-shadow:var(--sh);margin-top:8px}
+.chart .cd{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:4px}
+.chart .cd i{width:100%;border-radius:6px 6px 3px 3px;background:linear-gradient(180deg,#ffb877,var(--acc));min-height:3px}
+.chart .cd.z i{background:var(--line)}
+.chart .cd span{font-size:9.5px;color:var(--sub);font-weight:700}
+.chart .cd b{font-size:9px;color:var(--acc2);height:11px;font-weight:800}
+.strow{display:flex;align-items:center;gap:10px;background:var(--card);border-radius:16px;padding:10px 13px;box-shadow:var(--sh);margin-top:7px}
+.strow .sn{flex:none;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:12px;font-weight:800;background:var(--pc);color:var(--pcf)}
+.strow .sx{flex:1;min-width:0}
+.strow .sx b{display:block;font-size:13.5px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.strow .sx .sb2{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:5px}
+.strow .sx .sb2 i{display:block;height:100%;background:var(--pc)}
+.strow .sv{flex:none;text-align:right;font-size:11.5px;font-weight:800;color:var(--sub);line-height:1.35;font-variant-numeric:tabular-nums}
+.strow .sv b{display:block;color:var(--ink);font-size:13.5px}
+/* ===== 등급 ===== */
+.gl{display:flex;align-items:center;gap:13px;background:var(--card);border-radius:20px;padding:12px 14px;box-shadow:var(--sh);margin-top:8px}
+.gl .gm{flex:none;width:52px;height:52px}
+.gl .gt{flex:1;min-width:0}
+.gl .gt b{font-size:15.5px}.gl .gt small{display:block;color:var(--sub);font-size:12px;font-weight:700;margin-top:2px}
+.gl .bar{margin-top:6px}
+.inp2{width:100%;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font-size:14.5px;padding:10px 12px;min-height:92px;resize:vertical;font-family:inherit;line-height:1.5}
+.inp2:focus{border-color:var(--acc);outline:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -298,6 +349,8 @@ input{font:inherit}
  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .5-8A6 6 0 0 0 6 9.5 4.3 4.3 0 0 0 7 18z"/></symbol>
  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></symbol>
  <symbol id="i-del" viewBox="0 0 24 24"><path d="M9 6h11v12H9l-6-6z"/><path d="M13 10l4 4M17 10l-4 4"/></symbol>
+ <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20h16"/><rect x="5" y="12" width="3.6" height="8" rx="1"/><rect x="10.2" y="7" width="3.6" height="13" rx="1"/><rect x="15.4" y="4" width="3.6" height="16" rx="1"/></symbol>
+ <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 15v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></symbol>
 </svg>
 
 <!-- 잠금 -->
@@ -312,7 +365,8 @@ input{font:inherit}
 <!-- 홈 -->
 <main id="home" class="scr hide">
  <section class="hero">
-  <button class="musb trob" id="trob" aria-label="칭호와 배지"><svg class="ic"><use href="#i-trophy"/></svg></button>
+  <button class="musb stb" id="statb" aria-label="통계"><svg class="ic"><use href="#i-chart"/></svg></button>
+  <button class="musb trob" id="trob" aria-label="등급·칭호·배지"><svg class="ic"><use href="#i-trophy"/></svg></button>
   <button class="musb" id="musb" aria-label="배경음악"><svg class="ic"><use href="#i-music"/></svg></button>
   <button class="gearb" id="gear" aria-label="설정"><svg class="ic"><use href="#i-gear"/></svg></button>
   <div class="hrow">
@@ -340,7 +394,7 @@ input{font:inherit}
   <button class="act rd" id="mxbtn"><span class="ai"><svg class="ic" id="mxic"><use href="#i-dice"/></svg></span><b class="disp" id="mxt">완전 랜덤</b><small id="mxs"></small></button>
  </div>
  <section class="gcbox hide" id="gclock">
-  <div class="gch"><span class="gci"><svg class="ic"><use href="#i-lock"/></svg></span><div><b>기출 2,938문제 섞기</b><small>잠금을 풀면 경영학 단계와 랜덤에 기출이 자연스럽게 섞여요</small></div></div>
+  <div class="gch"><span class="gci"><svg class="ic"><use href="#i-lock"/></svg></span><div><b>기출 2,938문제 섞기</b><small>잠금을 풀면 경영학 장별 진행과 랜덤에 기출이 자연스럽게 섞여요</small></div></div>
   <form id="gcf" class="gcr" autocomplete="on"><input id="gcpw" class="inp" type="password" autocomplete="current-password" placeholder="기출 비밀번호" aria-label="기출 비밀번호"><button class="b3 sm" type="submit" id="gcbtn">열기</button></form>
   <div class="stline" id="gcmsg"></div>
  </section>
@@ -350,6 +404,24 @@ input{font:inherit}
 </main>
 
 <!-- 풀이 -->
+<main id="stat" class="scr hide">
+ <button class="xbtn" id="statback" aria-label="뒤로"><svg class="ic"><use href="#i-back"/></svg></button>
+ <h2 class="disp" style="font-size:28px;margin:10px 0 4px">통계</h2>
+ <p id="statsub" style="color:var(--sub);margin:0 0 12px;font-size:14px"></p>
+ <div class="stgrid" id="stgrid"></div>
+ <div class="ttl"><b class="disp">과목별</b><span>풀이율 · 정답률</span></div>
+ <div id="stsubj"></div>
+ <div class="ttl"><b class="disp">최근 14일</b><span id="stday"></span></div>
+ <div class="chart" id="stchart"></div>
+ <div class="ttl"><b class="disp">장별 통계</b><span id="stcp"></span></div>
+ <div class="seg" id="stseg" role="tablist">
+  <button data-st="mg" role="tab">경영학</button>
+  <button data-st="ac" role="tab">회계학</button>
+  <button data-st="fm" role="tab">재무관리</button>
+ </div>
+ <div id="stchap"></div>
+</main>
+
 <main id="play" class="scr hide">
  <div class="ptop">
   <button class="xbtn" id="quit" aria-label="그만하기"><svg class="ic"><use href="#i-x"/></svg></button>
@@ -405,6 +477,13 @@ input{font:inherit}
   <p style="margin:12px 0 0;font-size:13px">링크를 카톡 '나와의 채팅'이나 AirDrop으로 보내서 그 기기에서 열면 바로 연결돼요. 링크에는 토큰이 들어 있으니 다른 사람에게 보내지 마세요.</p>
   <div class="row2"><button class="b3 ghost sm" id="syncnow">지금 맞추기</button><button class="b3 ghost sm" id="syncoffbtn">연결 끊기</button></div>
  </div>
+ <div class="box">
+  <h3><svg class="ic"><use href="#i-upload"/></svg>기록 가져오기 · 백업</h3>
+  <p>‘전공 기출 CBT’는 claude.ai 안에만 기록이 저장돼서 자동으로 가져올 수 없어요. 그 화면에서 장별 <b>푼 문제 수</b>를 보고 <b>1장 12/40</b>처럼 한 줄씩 적어 주세요(정답 수도 알면 <b>1장 12/40 · 정답 10</b>처럼). 이미 푼 문제로만 채워 넣고 경험치·정답률은 새로 푼 문제부터 쌓여요.</p>
+  <textarea id="impbox" class="inp2" rows="4" placeholder="1장 12/40&#10;2장 30/45&#10;3장 8/40 정답 6"></textarea>
+  <div class="row2"><button class="b3 ghost sm" id="impex">내보내기</button><button class="b3 sm" id="impgo">가져오기</button></div>
+  <div class="stline" id="impmsg"></div>
+ </div>
  <div class="box"><button class="tg" id="bgmtg" role="switch" aria-checked="true">배경음악<i></i></button><div style="height:10px"></div><button class="tg" id="sndtg" role="switch" aria-checked="true">효과음<i></i></button></div>
  <div class="box">
   <h3>이 기기 잠그기</h3>
@@ -415,9 +494,11 @@ input{font:inherit}
 
 <main id="col" class="scr hide">
  <button class="xbtn" id="colback" aria-label="뒤로"><svg class="ic"><use href="#i-back"/></svg></button>
- <h2 class="disp" style="font-size:28px;margin:10px 0 4px">칭호 · 배지</h2>
- <p id="colsub" style="color:var(--sub);margin:0 0 16px;font-size:14px"></p>
- <div class="ttl" style="margin-top:6px"><b class="disp">배지</b><span id="bdcnt"></span></div>
+ <h2 class="disp" style="font-size:28px;margin:10px 0 4px">등급 · 칭호 · 배지</h2>
+ <p id="colsub" style="color:var(--sub);margin:0 0 10px;font-size:14px"></p>
+ <div class="ttl" style="margin-top:6px"><b class="disp">과목 등급</b><span>새싹 → 마스터</span></div>
+ <div id="glist"></div>
+ <div class="ttl"><b class="disp">배지</b><span id="bdcnt"></span></div>
  <div class="bgrid" id="bgrid"></div>
  <div class="ttl"><b class="disp">칭호</b><span id="ttcnt"></span></div>
  <div id="tlist"></div>
@@ -503,9 +584,49 @@ const stars=id=>(ST8.ST[id]||{}).s||0;
 function chapterOpen(s,ci){if(s==="mg"||ci===0)return true;return STG[s][ci-1].list.every(t=>stars(t.id)>0)}
 function stageOpen(s,ci,j){return chapterOpen(s,ci)&&(j===0||stars(STG[s][ci].list[j-1].id)>0)}
 const RANKS=[["새싹",0,"#5cb85f","#3d8f41"],["브론즈",.04,"#cd8547","#9c5c27"],["실버",.12,"#a3aebb","#76818e"],["골드",.25,"#f5b616","#c98f00"],["플래티넘",.42,"#2fc0b0","#1b8f84"],["다이아",.62,"#5a95ff","#2f63d8"],["마스터",.82,"#a868ff","#7a3ad6"]];
-function rankOf(s){let got=0,max=0;STG[s].forEach(c=>c.list.forEach(t=>{got+=stars(t.id);max+=3}));const r=max?got/max:0;let i=0;while(i+1<RANKS.length&&r>=RANKS[i+1][1])i++;
-  const nx=RANKS[i+1];return{i,name:RANKS[i][0],col:RANKS[i][2],col2:RANKS[i][3],got,max,need:nx?Math.ceil(nx[1]*max):max,next:nx?nx[0]:null,lo:Math.ceil(RANKS[i][1]*max)}}
+function rankOf(s){
+  if(s==="mg"){const a=subjAgg("mg"),r=a.total?a.solved/a.total:0,i=gradeIdx(r),nx=RANKS[i+1];
+    return{i,name:RANKS[i][0],col:RANKS[i][2],col2:RANKS[i][3],ratio:r,got:a.solved,max:a.total,acc:a.acc,
+      need:nx?Math.ceil(nx[1]*a.total):a.total,next:nx?nx[0]:null,lo:Math.ceil(RANKS[i][1]*a.total)}}
+  let got=0,max=0;STG[s].forEach(c=>c.list.forEach(t=>{got+=stars(t.id);max+=3}));const r=max?got/max:0,i=gradeIdx(r),nx=RANKS[i+1];
+  return{i,name:RANKS[i][0],col:RANKS[i][2],col2:RANKS[i][3],ratio:r,got,max,need:nx?Math.ceil(nx[1]*max):max,next:nx?nx[0]:null,lo:Math.ceil(RANKS[i][1]*max)}}
+function gradeIdx(r){let i=0;while(i+1<RANKS.length&&r>=RANKS[i+1][1])i++;return i}
 function dueList(){const now=Date.now();return META.Q.filter(q=>{const p=ST8.P[q[0]];return p&&p.w>0&&p.b<3&&p.d<=now})}
+
+/* ---------- 경영학: 푼 문제 수 / 전체 문제 수 ---------- */
+const PSC=[["#e6dad0","#8b7563"],["#ffdcc0","#7a4118"],["#ffc39a","#6f3a10"],["#ffa26a","#5a2a06"],["#f9884a","#ffffff"],["#e85a12","#ffffff"]];
+function pcol(r){if(!(r>0))return PSC[0];if(r<.15)return PSC[1];if(r<.35)return PSC[2];if(r<.6)return PSC[3];if(r<.85)return PSC[4];return PSC[5]}
+const fmtAcc=a=>a>0?Math.round(a*100)+"%":"—";
+const answered=p=>!!p&&(p.c+p.w>0||p.m>0);
+function subjAgg(s){const qs=META.Q.filter(q=>q[1]===s||(s==="mg"&&q[1]==="gc"));let solved=0,c=0,w=0,mas=0;
+  qs.forEach(q=>{const p=ST8.P[q[0]];if(answered(p)){solved++;c+=p.c||0;w+=p.w||0;if(p.b>=3)mas++}});
+  return{solved,total:qs.length,acc:(c+w)?c/(c+w):0,c,w,mas}}
+function chapterPool(s,ci){const a=META.Q.filter(q=>(q[1]===s||(s==="mg"&&q[1]==="gc"))&&q[2]===ci);a.sort((x,y)=>x[0]<y[0]?-1:1);return a}
+function chapterStat(s,ci){const pool=chapterPool(s,ci);let solved=0,c=0,w=0;
+  pool.forEach(q=>{const p=ST8.P[q[0]];if(answered(p)){solved++;c+=p.c||0;w+=p.w||0}});
+  return{pool,total:pool.length,solved,c,w,acc:(c+w)?c/(c+w):0,ratio:pool.length?solved/pool.length:0}}
+function renderMgPath(){
+  const A=subjAgg("mg"),P=$("path");P.innerHTML="";
+  const sum=document.createElement("section");sum.className="mgsum";
+  sum.innerHTML='<div class="mgsh"><b class="disp">전체 진행</b><span class="disp">'+Math.round(A.total?A.solved/A.total*100:0)+'%</span></div>'+
+    '<div class="bar"><i style="width:'+(A.total?A.solved/A.total*100:0)+'%"></i></div>'+
+    '<div class="mgmeta"><span>푼 <b>'+A.solved.toLocaleString()+'</b> / '+A.total.toLocaleString()+'</span><span>정답률 '+fmtAcc(A.acc)+'</span><span>'+(META.S.gc?"기출 포함":"기출 잠김")+'</span></div>';
+  P.appendChild(sum);
+  META.S.mg.CH.forEach((name,i)=>{const c=chapterStat("mg",i+1),[bg,fg]=pcol(c.ratio);
+    const b=document.createElement("button");b.className="mgrow";b.style.setProperty("--pc",bg);b.style.setProperty("--pcf",fg);
+    b.innerHTML='<span class="mgnum disp">'+(i+1)+'</span><span class="mgbody"><span class="mgname">'+esc(name)+'</span>'+
+      '<span class="mgbar"><i style="width:'+(c.ratio*100)+'%"></i></span></span>'+
+      '<span class="mgrt"><b class="disp">'+c.solved+' / '+c.total+'</b><small>'+(c.solved?"정답 "+fmtAcc(c.acc):"시작 전")+'</small></span>';
+    b.setAttribute("aria-label",name+", 푼 "+c.solved+" / "+c.total);
+    b.onclick=()=>startChapter("mg",i+1);P.appendChild(b)});
+}
+function startChapter(s,ci){
+  const c=chapterStat(s,ci),un=c.pool.filter(q=>!answered(ST8.P[q[0]]));
+  if(!un.length){const wr=c.pool.filter(q=>{const p=ST8.P[q[0]];return p&&p.w>0});
+    if(wr.length){toast("다 풀었어요 · 틀린 "+wr.length+"문제를 다시 풀어요");run({kind:"prog",s,ci,title:META.S[s].CH[ci-1]+" 다시 풀기",qs:shuffle(wr.slice()).slice(0,20)})}
+    else toast("이 장은 다 풀었어요");return}
+  run({kind:"prog",s,ci,title:META.S[s].CH[ci-1],qs:un.slice(0,20)});
+}
 
 /* ---------- 효과음 ---------- */
 let AC=null;
@@ -514,10 +635,10 @@ const sfx={ok:c=>tone([660+Math.min(c,8)*35,990+Math.min(c,8)*35],.07,"triangle"
 const buzz=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
 
 /* ---------- 화면 ---------- */
-function show(s){["lock","home","play","res","set","col"].forEach(x=>$(x).classList.toggle("hide",x!==s));window.scrollTo(0,0)}
+function show(s){["lock","home","play","res","set","col","stat"].forEach(x=>$(x).classList.toggle("hide",x!==s));window.scrollTo(0,0)}
 function toast(t){const e=$("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),2400)}
 const starSvg=on=>'<svg class="ic'+(on?" on":"")+'" viewBox="0 0 24 24"><use href="#i-star"/></svg>';
-function medal(R){const id="mg"+R.i;return '<defs><linearGradient id="'+id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+R.col+'"/><stop offset="1" stop-color="'+R.col2+'"/></linearGradient></defs>'+
+function medal(R,pf){const id=(pf||"mg")+R.i;return '<defs><linearGradient id="'+id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+R.col+'"/><stop offset="1" stop-color="'+R.col2+'"/></linearGradient></defs>'+
   '<path d="M24 4h8l6 16h-8zM48 4h-8l-6 16h8z" fill="'+R.col2+'" opacity=".55"/>'+
   '<circle cx="36" cy="42" r="26" fill="'+R.col2+'"/><circle cx="36" cy="40" r="26" fill="url(#'+id+')"/><circle cx="36" cy="40" r="20" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="2.5"/>'+
   '<path d="M36 26l4.1 8.3 9.2 1.3-6.6 6.4 1.6 9.1L36 46.8l-8.3 4.3 1.6-9.1-6.6-6.4 9.2-1.3z" fill="#fff"/>'}
@@ -529,13 +650,15 @@ function renderHome(){
   syncBadge();
   const s=CFG.subj;document.querySelectorAll(".seg button").forEach(b=>{b.classList.toggle("on",b.dataset.s===s);b.setAttribute("aria-selected",b.dataset.s===s)});
   $("gclock").classList.toggle("hide",!(s==="mg"&&!META.S.gc&&KINFO&&KINFO.gsalt));
-  const R=rankOf(s);$("medal").innerHTML=medal(R);$("rkn").textContent=META.S[s].name+" · "+R.name;
-  $("rks").textContent=R.next?"별 "+R.got+"개 · "+R.next+"까지 "+(R.need-R.got)+"개 더":"별 "+R.got+" / "+R.max+" · 최고 등급";
-  $("rkb").style.width=(R.next?(R.got-R.lo)/Math.max(1,R.need-R.lo)*100:100)+"%";
+  const R=rankOf(s);$("medal").innerHTML=medal(R,s);$("rkn").textContent=META.S[s].name+" · "+R.name;
+  if(s==="mg")$("rks").textContent=R.got.toLocaleString()+" / "+R.max.toLocaleString()+" ("+Math.round(R.ratio*100)+"%)"+(R.next?" · "+R.next+"까지 "+Math.max(0,R.need-R.got).toLocaleString()+"문제":" · 최고 등급");
+  else $("rks").textContent=R.next?"별 "+R.got+"개 · "+R.next+"까지 "+(R.need-R.got)+"개 더":"별 "+R.got+" / "+R.max+" · 최고 등급";
+  $("rkb").style.width=Math.max(0,Math.min(100,R.next?(R.got-R.lo)/Math.max(1,R.need-R.lo)*100:100))+"%";
   const dl=dueList();$("rvs").textContent=dl.length?dl.length+"문제가 기다려요":"복습할 문제 없음";$("rvbtn").disabled=!dl.length;
   if(s==="mg"){const n=subjQs("mg").length;$("mxt").textContent="완전 랜덤";$("mxs").textContent=(META.S.gc?"경영학+기출 ":"경영학 전체 ")+n.toLocaleString()+"문제에서 10개";$("mxbtn").disabled=false;$("mxic").innerHTML='<use href="#i-dice"/>'}
   else{const seen=META.Q.filter(q=>q[1]===s&&ST8.P[q[0]]).length;$("mxt").textContent="섞어 풀기";$("mxs").textContent=seen<4?"단계를 먼저 풀어보세요":"푼 "+seen+"문제에서 10개";$("mxbtn").disabled=seen<4;$("mxic").innerHTML='<use href="#i-shuffle"/>'}
-  $("pathlbl").textContent=META.S[s].name+(s==="mg"&&META.S.gc?"·기출":"")+" 단계";$("pathsub").textContent=s==="mg"?"어느 장부터 시작해도 돼요":"앞 장을 통과하면 다음 장이 열려요";
+  if(s==="mg"){$("pathlbl").textContent="경영학 장별 진행";$("pathsub").textContent="푼 문제 수 / 전체 문제 수";renderMgPath();return}
+  $("pathlbl").textContent=META.S[s].name+" 단계";$("pathsub").textContent="앞 장을 통과하면 다음 장이 열려요";
   const P=$("path");P.innerHTML="";
   let nextAt=null;STG[s].some((c,ci)=>c.list.some((t,j)=>{if(stageOpen(s,ci,j)&&!stars(t.id)){nextAt=[ci,j];return true}}));
   if(OPENCH[s]===undefined)OPENCH[s]=nextAt?nextAt[0]:0;
@@ -556,7 +679,7 @@ function renderHome(){
 
 /* ---------- 칭호·배지 ---------- */
 function bestStreak(){const ds=Object.keys(ST8.D).filter(d=>dayCount(d)>0).sort();let b=0,c=0,prev=null;for(const d of ds){const t=new Date(d+"T00:00:00").getTime();c=prev!==null&&Math.round((t-prev)/DAY)===1?c+1:1;b=Math.max(b,c);prev=t}return b}
-function statsNow(){let ans=0,cor=0,mas=0,gc=0;for(const k in ST8.P){const p=ST8.P[k];ans+=p.c+p.w;cor+=p.c;if(p.b>=3)mas++;if(k.startsWith("gc")&&p.c>0)gc++}
+function statsNow(){let ans=0,cor=0,mas=0,gc=0;for(const k in ST8.P){const p=ST8.P[k];if(answered(p))ans++;cor+=p.c||0;if(p.b>=3)mas++;if(k.startsWith("gc")&&p.c>0)gc++}
   let st=0,perf=0;for(const k in ST8.ST){st+=ST8.ST[k].s;if(ST8.ST[k].s===3)perf++}
   const rk={};SUBJS.forEach(x=>{try{rk[x]=rankOf(x).i}catch(e){rk[x]=0}});
   return{ans,cor,mas,gc,st,perf,streak:bestStreak(),days:Object.keys(ST8.D).filter(d=>dayCount(d)>0).length,rk,lv:lvOf(totalXP()).l}}
@@ -576,12 +699,43 @@ function checkBadges(silent){const S=statsNow(),now=earnedBadges(S),had=LS.get("
   const nw=now.filter(x=>!had.includes(x));nw.forEach((id,i)=>{const b=BADGES.find(x=>x[0]===id);setTimeout(()=>{toast("새 배지 획득! "+b[1]);sfx.win()},1400+i*2600)})}
 function renderCol(){const S=statsNow(),L=lvOf(totalXP()),now=earnedBadges(S);
   $("colsub").textContent="Lv."+L.l+" "+titleOf(L.l)+" · 푼 문제 "+S.ans.toLocaleString()+" · 마스터 "+S.mas;
+  $("glist").innerHTML=SUBJS.map(s=>{const A=subjAgg(s),R=rankOf(s),nx=R.next;
+    const pct=nx?Math.max(0,Math.min(100,(R.got-R.lo)/Math.max(1,R.need-R.lo)*100)):100;
+    const desc=s==="mg"?A.solved.toLocaleString()+" / "+A.total.toLocaleString()+" · 정답률 "+fmtAcc(A.acc):"별 "+R.got+" / "+R.max+(A.solved?" · "+A.solved.toLocaleString()+"문제 품":" · 아직 시작 전");
+    const to=nx?(s==="mg"?nx+"까지 "+Math.max(0,R.need-R.got).toLocaleString()+"문제":nx+"까지 "+Math.max(0,R.need-R.got)+"개 별"):"최고 등급";
+    return '<div class="gl"><svg class="gm" viewBox="0 0 72 72" aria-hidden="true">'+medal(R,s)+'</svg><div class="gt"><b>'+META.S[s].name+' · '+R.name+'</b><small>'+desc+'</small><div class="bar"><i style="width:'+pct+'%;background:linear-gradient(90deg,'+R.col+','+R.col2+')"></i></div><small>'+to+'</small></div></div>'}).join("");
   $("bdcnt").textContent=now.length+" / "+BADGES.length;
   $("bgrid").innerHTML=BADGES.map(b=>{const v=b[4](S),on=v>=b[5],[c1,c2]=BC[b[6]];return '<div class="bd'+(on?"":" off")+'" style="--b1:'+c1+';--b2:'+c2+'"><span class="bdi"><svg class="ic"><use href="#'+b[3]+'"/></svg></span><b>'+b[1]+'</b><small>'+b[2]+'</small>'+(on||b[5]===1?"":'<span class="pg"><i style="width:'+Math.min(100,v/b[5]*100)+'%"></i></span><small>'+Math.min(v,b[5]).toLocaleString()+" / "+b[5].toLocaleString()+'</small>')+'</div>'}).join("");
   const got=TITLES.filter(t=>L.l>=t[0]).length;$("ttcnt").textContent=got+" / "+TITLES.length;
   $("tlist").innerHTML=TITLES.map((t,i)=>{const on=L.l>=t[0],cur=on&&(i===TITLES.length-1||L.l<TITLES[i+1][0]),[c1,c2]=tierOf(t[0]);return '<div class="tl'+(on?"":" off")+(cur?" cur":"")+'" style="--t1:'+c1+';--t2:'+c2+'"><span class="tb disp">'+t[0]+'</span><b>'+t[1]+'</b><span>'+(cur?"지금 칭호":on?"획득":"Lv."+t[0]+" 달성 시")+'</span></div>'}).join("")}
 $("trob").onclick=()=>{renderCol();show("col")};$("colback").onclick=()=>{renderHome();show("home")};
 document.querySelector(".ring").onclick=()=>{renderCol();show("col")};
+
+/* ---------- 통계 ---------- */
+let STSUBJ="mg";
+function renderStat(){
+  const S=statsNow();let sol=0,tl=0,c=0,w=0,mas=0;const A={};
+  SUBJS.forEach(s=>{const a=subjAgg(s);A[s]=a;sol+=a.solved;tl+=a.total;c+=a.c;w+=a.w;mas+=a.mas});
+  const acc=(c+w)?c/(c+w):0;
+  const card=(v,l,s2)=>'<div class="stc"><b class="disp">'+v+'</b><span>'+l+'</span><small style="display:block;font-size:11.5px;color:var(--sub);margin-top:3px;font-weight:700">'+s2+'</small></div>';
+  $("statsub").textContent="푼 문제는 한 번이라도 채점한 문제 기준이에요";
+  $("stgrid").innerHTML=card(sol.toLocaleString(),"푼 문제","전체 "+tl.toLocaleString())+
+    card(fmtAcc(acc),"정답률","푼 문제 기준")+card(mas.toLocaleString(),"마스터","3연속 정답")+
+    card(streak()+"일","연속 학습","최고 "+bestStreak()+"일");
+  $("stsubj").innerHTML=SUBJS.map(s=>{const a=A[s],R=rankOf(s),r=a.total?a.solved/a.total*100:0;
+    return '<div class="subj" style="--g1:'+R.col+';--g2:'+R.col2+'"><span class="sg">'+Math.round(r)+'%</span><div class="sb"><b>'+META.S[s].name+' · '+R.name+'</b><small>푼 '+a.solved.toLocaleString()+' / '+a.total.toLocaleString()+' · 정답률 '+fmtAcc(a.acc)+'</small><div class="bar"><i style="width:'+r+'%"></i></div></div></div>'}).join("");
+  const days=[];for(let i=13;i>=0;i--){const t=Date.now()-i*DAY;days.push([t,dayCount(dstr(t))])}
+  const mx=Math.max(1,...days.map(d=>d[1]));
+  $("stday").textContent="14일 "+days.reduce((a,d)=>a+d[1],0)+"문제";
+  $("stchart").innerHTML=days.map(([t,n])=>'<div class="cd'+(n?"":" z")+'"><b>'+((n||"")+"")+'</b><i style="height:'+(n?Math.max(8,n/mx*100):4)+'%"></i><span>'+new Date(t).getDate()+'</span></div>').join("");
+  document.querySelectorAll("#stseg button").forEach(b=>{const on=b.dataset.st===STSUBJ;b.classList.toggle("on",on);b.setAttribute("aria-selected",on)});
+  $("stcp").textContent=META.S[STSUBJ].name+" "+META.S[STSUBJ].CH.length+"장";
+  $("stchap").innerHTML=META.S[STSUBJ].CH.map((name,i)=>{const cs=chapterStat(STSUBJ,i+1),[bg,fg]=pcol(cs.ratio);
+    return '<div class="strow" style="--pc:'+bg+';--pcf:'+fg+'"><span class="sn">'+(i+1)+'</span><span class="sx"><b>'+esc(name)+'</b><span class="sb2"><i style="width:'+(cs.ratio*100)+'%"></i></span></span><span class="sv"><b>'+cs.solved+' / '+cs.total+'</b>'+(cs.solved?"정답 "+fmtAcc(cs.acc):"—")+'</span></div>'}).join("");
+}
+$("statb").onclick=()=>{renderStat();show("stat")};
+$("statback").onclick=()=>{renderHome();show("home")};
+document.querySelectorAll("#stseg button").forEach(b=>b.onclick=()=>{STSUBJ=b.dataset.st;renderStat()});
 
 /* ---------- 풀이 ---------- */
 let G=null;const OPENCH={};
@@ -599,9 +753,9 @@ let LVQ=null;function levelUp(l){const [t1,t2]=tierOf(l),b=$("lvbadge");b.style.
 $("lvupok").onclick=()=>{$("lvup").classList.add("hide");if(LVQ){const f=LVQ;LVQ=null;f()}};
 function render(){
   const q=G.qs[G.i],[id,s,ch,tp,text,opts]=q;G.lock=false;
-  $("trk").style.width=Math.max(4,G.i/G.qs.length*100)+"%";
+  if(G.kind==="prog"){const c=chapterStat(G.s,G.ci);$("trk").style.width=Math.max(2,c.ratio*100)+"%";$("qch").textContent=(G.i+1)+" / "+G.qs.length+" · "+META.S[s].CH[ch-1]+" · 푼 "+c.solved+" / "+c.total}
+  else{$("trk").style.width=Math.max(4,G.i/G.qs.length*100)+"%";$("qch").textContent=(G.i+1)+" / "+G.qs.length+" · "+META.S[s].CH[ch-1]}
   $("qtp").textContent=tp==="ox"?"OX":tp==="mc5"?("기출"+(q[8]?" · "+q[8]:"")):"4지선다";$("qtp").className="tp"+(tp==="ox"?" ox":"");
-  $("qch").textContent=(G.i+1)+" / "+G.qs.length+" · "+META.S[s].CH[ch-1];
   const c=$("qcard");c.className="qcard"+(tp==="ox"?" ox":"");c.textContent=text;
   const A=$("ans");A.innerHTML="";
   if(tp==="ox"){A.className="ans ox";[["O",1],["X",0]].forEach(([t,v])=>{const b=document.createElement("button");b.className="ab "+t;b.textContent=t;b.dataset.v=v;b.setAttribute("aria-label",t==="O"?"맞다":"틀리다");b.onclick=()=>answer(v,b);A.appendChild(b)})}
@@ -611,7 +765,7 @@ function setCombo(c){const e=$("combo");$("cb").textContent=c;e.classList.toggle
 function answer(v,btn){
   if(!G||G.lock)return;G.lock=true;
   const q=G.qs[G.i],[id,s,ch,tp,text,opts,a,ex]=q,right=v===a;
-  const xb=totalXP();grade(id,right);addDay(1);save();const gain=totalXP()-xb,mastered=right&&ST8.P[id].b===3;
+  const xb=totalXP();grade(id,right);addDay(1);save();if(G.kind==="prog"){const cs=chapterStat(G.s,G.ci);$("trk").style.width=Math.max(2,cs.ratio*100)+"%"}const gain=totalXP()-xb,mastered=right&&ST8.P[id].b===3;
   [...$("ans").children].forEach(b=>{b.disabled=true;const bv=+b.dataset.v;if(bv===a)b.classList.add("right");else if(b===btn)b.classList.add("wrong");else b.classList.add("dim")});
   const sh=$("sheet"),x=$("shx");x.innerHTML="";
   if(right){G.ok++;G.combo++;G.max=Math.max(G.max,G.combo);setCombo(G.combo);sfx.ok(G.combo);buzz(10);
@@ -636,18 +790,26 @@ function finish(){
   $("stars").innerHTML=g.kind==="stage"?[1,2,3].map(k=>'<svg viewBox="0 0 24 24" class="'+(st>=k?"on":"")+'"><use href="#i-star"/></svg>').join(""):"";
   $("stars").style.height=g.kind==="stage"?"":"10px";
   $("rtitle").textContent=g.kind!=="stage"?(acc>=.8?"잘했어요!":"수고했어요!"):st===3?"완벽해요!":st===2?"훌륭해요!":st===1?"통과!":"조금만 더!";
-  $("rsub").textContent=g.title+(g.kind==="stage"&&!st?" · "+Math.ceil(n*.6)+"문제 이상 맞히면 통과예요":"");
+  $("rsub").textContent=g.kind==="prog"?g.title+" · 푼 "+chapterStat(g.s,g.ci).solved+" / "+chapterStat(g.s,g.ci).total+" ("+Math.round(chapterStat(g.s,g.ci).ratio*100)+"%)":g.title+(g.kind==="stage"&&!st?" · "+Math.ceil(n*.6)+"문제 이상 맞히면 통과예요":"");
   let bd="";if(L.l>L0.l)bd+='<span class="badge up">레벨 업! Lv.'+L.l+'</span>';
   if(g.kind==="stage"){const R=rankOf(g.s);if(R.i>g.rank0)bd+='<span class="badge">등급 상승! '+R.name+'</span>';else if(newBest&&st)bd+='<span class="badge">새 기록 · 별 '+st+'개</span>'}
+  if(g.kind==="prog"){const c=chapterStat(g.s,g.ci);bd+='<span class="badge">'+c.solved.toLocaleString()+' / '+c.total.toLocaleString()+' ('+Math.round(c.ratio*100)+'%)</span>';const R=rankOf(g.s);if(R.i>g.rank0)bd+='<span class="badge up">등급 상승! '+R.name+'</span>'}
   $("badges").innerHTML=bd;
   $("r1").textContent=g.ok+"/"+n;$("r2").textContent=Math.round(acc*100)+"%";$("r3").textContent=g.max;
   animXp(xp-g.xp0,lvOf(totalXP()-(xp-g.xp0)),L);
   if(L.l>g.lv)setTimeout(()=>{if($("res").classList.contains("hide"))return;G0lv(L.l)},900);
   $("rlv").textContent="Lv."+L.l+" "+titleOf(L.l)+" · 다음 레벨까지 "+(L.need-L.cur)+" XP";
   let nx=null;if(g.kind==="stage"&&st>0){const c=STG[g.s];if(g.j+1<c[g.ci].list.length)nx=[g.s,g.ci,g.j+1];else if(g.ci+1<c.length&&chapterOpen(g.s,g.ci+1))nx=[g.s,g.ci+1,0]}
-  $("rnext").classList.toggle("hide",!nx);if(nx){OPENCH[nx[0]]=nx[1];$("rnext").onclick=()=>startStage(...nx)}
+  $("rnext").classList.toggle("hide",!nx);if(nx){OPENCH[nx[0]]=nx[1];$("rnext").textContent="다음 단계";$("rnext").onclick=()=>startStage(...nx)}
   $("ragain").textContent=g.kind==="stage"?"다시 도전":"한 판 더";
   $("ragain").onclick=()=>{if(g.kind==="stage")startStage(g.s,g.ci,g.j);else if(g.kind==="mix")startMix();else if(dueList().length)startReview();else{toast("복습할 문제를 다 풀었어요");renderHome();show("home")}};
+  if(g.kind==="prog"){const c=chapterStat(g.s,g.ci),un=c.pool.filter(q=>!answered(ST8.P[q[0]]));
+    $("rnext").classList.remove("hide");$("rnext").textContent=un.length?"계속 풀기 ("+Math.min(20,un.length)+"문제)":"이 장 다 풀었어요";
+    $("rnext").onclick=()=>{if(un.length)startChapter(g.s,g.ci);else{renderHome();show("home")}};
+    $("ragain").textContent="틀린 문제만";
+    $("ragain").onclick=()=>{const wr=c.pool.filter(q=>{const p=ST8.P[q[0]];return p&&p.w>0});
+      if(wr.length)run({kind:"prog",s:g.s,ci:g.ci,title:META.S[g.s].CH[g.ci-1]+" 틀린 문제",qs:shuffle(wr.slice()).slice(0,20)});else toast("이 장에 틀린 문제가 없어요")};
+  }
   const wl=$("wl");wl.innerHTML=g.wrong.length?'<h3>틀린 문제 다시 보기</h3>':"";
   g.wrong.forEach(q=>{const d=document.createElement("div");d.className="wi";const b=document.createElement("b");b.textContent="정답 "+(q[3]==="ox"?(q[6]?"O":"X"):q[5][q[6]]);const t=document.createElement("div");t.textContent=q[4];const e=document.createElement("div");e.style.cssText="color:var(--sub);margin-top:4px";e.textContent=q[7];d.append(b,t,e);wl.appendChild(d)});
   show("res");if(st>=2||L.l>L0.l){sfx.win();confetti()}else sfx.end();
@@ -713,6 +875,60 @@ $("syncoffbtn").onclick=()=>{if(!confirmOff())return;CFG.tok="";CFG.gist="";save
 function confirmOff(){if(confirmOff.t&&Date.now()-confirmOff.t<2500)return true;confirmOff.t=Date.now();toast("한 번 더 누르면 연결을 끊어요");return false}
 $("sndtg").onclick=()=>{CFG.snd=!CFG.snd;saveCfg();$("sndtg").setAttribute("aria-checked",CFG.snd);if(CFG.snd)sfx.ok(0)};
 $("lockout").onclick=async()=>{await kvSet("key",undefined);await kvSet("gkey",undefined);META=null;showLock();toast("이 기기를 잠갔어요")};
+
+/* ---------- 기록 가져오기 · 내보내기 ---------- */
+function impMsg(t,bad){const e=$("impmsg");e.textContent=t;e.className="stline"+(bad?" bad":" ok")}
+function chIdxOf(k){const s=String(k).replace(/\s|장|번/g,"");
+  if(/^\d+$/.test(s)){const n=+s;return n>=1&&n<=META.S.mg.CH.length?n:0}
+  for(let i=0;i<META.S.mg.CH.length;i++){const n=META.S.mg.CH[i].replace(/\s/g,"");if(n===s||n.startsWith(s))return i+1}
+  return 0}
+function parseCountLines(txt){const out={};
+  txt.split(/\r?\n/).forEach(line=>{const s=line.trim();if(!s)return;
+    let ci=0,rest=s;
+    const nm=META.S.mg.CH.map((n,i)=>[n,i+1]).find(([n])=>s.startsWith(n)||s.startsWith(n.replace(/\s/g,"")));
+    const mn=s.match(/^(\d+)\s*(?:장|번|\.|\)|:)?\s*/);
+    if(nm){ci=nm[1];rest=s.slice(nm[0].length)}
+    else if(mn){ci=+mn[1];rest=s.slice(mn[0].length)}
+    if(!(ci>=1&&ci<=META.S.mg.CH.length))return;
+    const nums=(rest.match(/\d+/g)||[]).map(Number);if(!nums.length)return;
+    let solved=nums[0],correct=null;
+    if(nums.length>=3)correct=nums[2];else if(nums.length===2&&nums[1]<solved)correct=nums[1];
+    if(correct!=null&&correct>solved)correct=solved;
+    out[ci]={solved,correct}});
+  return out}
+function applyChapterCounts(cnt){const MIGT=Date.now()-60000;let added=0;
+  for(const k in cnt){const ci=+k,cor=cnt[k].correct;if(!(ci>=1))continue;
+    const pool=chapterPool("mg",ci).filter(q=>!answered(ST8.P[q[0]]));
+    const n=Math.max(0,Math.min(cnt[k].solved,pool.length));
+    pool.slice(0,n).forEach((q,i)=>{const base={d:MIGT+30*DAY,t:MIGT,c:0,w:0,b:0};
+      if(cor==null)ST8.P[q[0]]=Object.assign(base,{m:1});
+      else if(i<cor)ST8.P[q[0]]=Object.assign(base,{c:1});
+      else ST8.P[q[0]]=Object.assign(base,{w:1})});
+    added+=n}
+  save();return added}
+$("impgo").onclick=()=>{
+  const t=$("impbox").value.trim();
+  if(!t){impMsg("붙여넣을 내용이 없어요",true);return}
+  let j=null;try{j=JSON.parse(t)}catch(e){}
+  try{
+    if(j&&typeof j==="object"){
+      if(j.P||j.ST){const m=merge(ST8,{P:j.P||{},ST:j.ST||{},D:j.D||{}});ST8=m;save();checkBadges(true);renderHome();impMsg("기록을 합쳤어요 · 푼 문제 "+statsNow().ans.toLocaleString()+"문제",false);return}
+      const cnt={};let ok=false;
+      for(const k in j){const ci=chIdxOf(k);if(!ci)continue;const v=j[k];let sv=0,co=null;
+        if(Array.isArray(v)){sv=+v[0];co=v.length>1&&v[1]!=null?+v[1]:null}
+        else if(v&&typeof v==="object"){sv=+(v.solved!=null?v.solved:v.푼!=null?v.푼:v.done!=null?v.done:v.n!=null?v.n:0);
+          const cc=v.correct!=null?v.correct:v.맞힌!=null?v.맞힌:v.right;co=cc!=null?+cc:null}
+        else sv=+v;
+        if(!isFinite(sv))continue;cnt[ci]={solved:sv,correct:co==null?null:Math.min(co,sv)};ok=true}
+      if(ok){const n=applyChapterCounts(cnt);checkBadges(true);renderHome();impMsg("이전 완료 · "+n.toLocaleString()+"문제를 푼 것으로 표시했어요",false);return}
+    }
+    const cnt=parseCountLines(t),keys=Object.keys(cnt);
+    if(!keys.length){impMsg("형식을 알아보지 못했어요. ‘1장 12/40’처럼 적어 주세요.",true);return}
+    const n=applyChapterCounts(cnt);checkBadges(true);renderHome();impMsg(keys.length+"개 장 · "+n.toLocaleString()+"문제를 이전했어요",false);
+  }catch(e){impMsg(e&&e.message?e.message:"가져오지 못했어요",true)}
+};
+$("impex").onclick=async()=>{const t=JSON.stringify({P:ST8.P,ST:ST8.ST,D:ST8.D});$("impbox").value=t;
+  try{await navigator.clipboard.writeText(t);impMsg("기록을 복사했어요 · 다른 기기에서 붙여넣으면 이어져요",false)}catch(e){impMsg("아래 칸에 기록을 담았어요 · 길게 눌러 복사해 주세요",false)}};
 document.addEventListener("visibilitychange",()=>{if(!CFG.tok||!META)return;if(document.visibilityState==="hidden"){clearTimeout(SYNC.timer);syncNow()}else if(Date.now()-SYNC.at>30000)syncNow()});
 addEventListener("online",()=>syncSoon());
 setInterval(()=>{if(CFG.tok&&META&&document.visibilityState==="visible"&&!G&&Date.now()-SYNC.at>120000)syncNow()},30000);
