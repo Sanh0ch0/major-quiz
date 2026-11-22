@@ -266,8 +266,8 @@ input{font:inherit}
 .tg i::after{content:"";position:absolute;left:3px;top:3px;width:26px;height:26px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
 .tg[aria-checked=true] i{background:var(--ok)}.tg[aria-checked=true] i::after{transform:translateX(20px)}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:70}
-.toast{position:fixed;left:50%;top:calc(var(--sa-t) + 14px);transform:translate(-50%,-160%);background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;font-weight:700;font-size:14px;z-index:90;transition:transform .25s;max-width:90vw;text-align:center}
-.toast.on{transform:translate(-50%,0)}
+.toast{position:fixed;left:50%;top:calc(var(--sa-t) + 14px);transform:translate(-50%,-160%);background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;font-weight:700;font-size:14px;z-index:90;transition:transform .25s,opacity .2s;max-width:90vw;text-align:center;opacity:0;visibility:hidden}
+.toast.on{transform:translate(-50%,0);opacity:1;visibility:visible}
 @keyframes shake{20%,80%{transform:translateX(5px)}30%,50%,70%{transform:translateX(-9px)}40%,60%{transform:translateX(9px)}}
 @keyframes rise{0%{opacity:0;transform:translate(-50%,20px) scale(.7)}20%{opacity:1;transform:translate(-50%,0) scale(1.1)}100%{opacity:0;transform:translate(-50%,-60px)}}
 @keyframes bump{40%{transform:scale(1.25)}}
@@ -557,11 +557,11 @@ async function tryGc(){if(!KINFO||!KINFO.gsalt)return;const k=await kvGet("gkey"
 let ST8=LS.get("state",{P:{},ST:{},D:{}});["P","ST","D"].forEach(k=>ST8[k]=ST8[k]||{});
 let DEV=LS.get("dev",null);if(!DEV){DEV=Math.random().toString(36).slice(2,8);LS.set("dev",DEV)}
 const save=()=>{LS.set("state",ST8);syncSoon()};
-function grade(id,right){const p=ST8.P[id]||{c:0,w:0,b:0,d:0};if(right){p.c++;p.b=Math.min(p.b+1,5)}else{p.w++;p.b=0}p.d=Date.now()+INTV[p.b]*DAY;p.t=Date.now();ST8.P[id]=p}
+function grade(id,right){const p=ST8.P[id]||{c:0,w:0,b:0,d:0};if(right){p.c++;p.b=Math.min(p.b+1,5)}else{p.w++;p.b=0}p.d=Date.now()+INTV[p.b]*DAY;p.t=Date.now();delete p.m;ST8.P[id]=p}
 function addDay(n){const t=today();const o=ST8.D[t]||(ST8.D[t]={});o[DEV]=(o[DEV]||0)+n}
 function dayCount(t){const o=ST8.D[t];return o?Object.values(o).reduce((a,b)=>a+b,0):0}
 function streak(){let n=0,t=Date.now();if(!dayCount(dstr(t)))t-=DAY;while(dayCount(dstr(t))){n++;t-=DAY}return n}
-function totalXP(){let x=0;for(const k in ST8.P){const p=ST8.P[k];x+=p.c*10+(p.c>0?5:0)+(p.b>=3?20:0)}for(const k in ST8.ST){const s=ST8.ST[k].s;x+=s*20+(s>0?30:0)+(s===3?30:0)}x+=Object.keys(ST8.D).filter(d=>dayCount(d)>0).length*30;return x}
+function totalXP(){let x=0;for(const k in ST8.P){const p=ST8.P[k];if(p.m)continue;x+=p.c*10+(p.c>0?5:0)+(p.b>=3?20:0)}for(const k in ST8.ST){const s=ST8.ST[k].s;x+=s*20+(s>0?30:0)+(s===3?30:0)}x+=Object.keys(ST8.D).filter(d=>dayCount(d)>0).length*30;return x}
 function lvOf(xp){let l=1,need=100;while(xp>=need){xp-=need;l++;need=100+(l-1)*35}return{l,cur:xp,need}}
 const TITLES=[[1,"새내기"],[2,"입문자"],[3,"예비 수험생"],[4,"수험생"],[5,"열공러"],[7,"개념 수집가"],[9,"오답 사냥꾼"],[11,"기출 탐험가"],[13,"실력자"],[16,"우등생"],[19,"고수"],[23,"달인"],[27,"마스터"],[32,"그랜드마스터"],[38,"전설"],[45,"합격 예정자"]];
 const titleOf=l=>{let t=TITLES[0][1];for(const [k,v] of TITLES)if(l>=k)t=v;return t};
@@ -625,7 +625,7 @@ function startChapter(s,ci){
   if(!un.length){const wr=c.pool.filter(q=>{const p=ST8.P[q[0]];return p&&p.w>0});
     if(wr.length){toast("다 풀었어요 · 틀린 "+wr.length+"문제를 다시 풀어요");run({kind:"prog",s,ci,title:META.S[s].CH[ci-1]+" 다시 풀기",qs:shuffle(wr.slice()).slice(0,20)})}
     else toast("이 장은 다 풀었어요");return}
-  run({kind:"prog",s,ci,title:META.S[s].CH[ci-1],qs:un.slice(0,20)});
+  run({kind:"prog",s,ci,title:META.S[s].CH[ci-1],qs:un});
 }
 
 /* ---------- 효과음 ---------- */
@@ -765,7 +765,7 @@ function setCombo(c){const e=$("combo");$("cb").textContent=c;e.classList.toggle
 function answer(v,btn){
   if(!G||G.lock)return;G.lock=true;
   const q=G.qs[G.i],[id,s,ch,tp,text,opts,a,ex]=q,right=v===a;
-  const xb=totalXP();grade(id,right);addDay(1);save();if(G.kind==="prog"){const cs=chapterStat(G.s,G.ci);$("trk").style.width=Math.max(2,cs.ratio*100)+"%"}const gain=totalXP()-xb,mastered=right&&ST8.P[id].b===3;
+  const xb=totalXP();grade(id,right);addDay(1);save();if(G.kind==="prog"){const cs=chapterStat(G.s,G.ci);$("trk").style.width=Math.max(2,cs.ratio*100)+"%";$("qch").textContent=(G.i+1)+" / "+G.qs.length+" · "+META.S[G.s].CH[G.ci-1]+" · 푼 "+cs.solved+" / "+cs.total}const gain=totalXP()-xb,mastered=right&&ST8.P[id].b===3;
   [...$("ans").children].forEach(b=>{b.disabled=true;const bv=+b.dataset.v;if(bv===a)b.classList.add("right");else if(b===btn)b.classList.add("wrong");else b.classList.add("dim")});
   const sh=$("sheet"),x=$("shx");x.innerHTML="";
   if(right){G.ok++;G.combo++;G.max=Math.max(G.max,G.combo);setCombo(G.combo);sfx.ok(G.combo);buzz(10);
@@ -804,7 +804,7 @@ function finish(){
   $("ragain").textContent=g.kind==="stage"?"다시 도전":"한 판 더";
   $("ragain").onclick=()=>{if(g.kind==="stage")startStage(g.s,g.ci,g.j);else if(g.kind==="mix")startMix();else if(dueList().length)startReview();else{toast("복습할 문제를 다 풀었어요");renderHome();show("home")}};
   if(g.kind==="prog"){const c=chapterStat(g.s,g.ci),un=c.pool.filter(q=>!answered(ST8.P[q[0]]));
-    $("rnext").classList.remove("hide");$("rnext").textContent=un.length?"계속 풀기 ("+Math.min(20,un.length)+"문제)":"이 장 다 풀었어요";
+    $("rnext").classList.remove("hide");$("rnext").textContent=un.length?"계속 풀기 ("+un.length.toLocaleString()+"문제)":"이 장 다 풀었어요";
     $("rnext").onclick=()=>{if(un.length)startChapter(g.s,g.ci);else{renderHome();show("home")}};
     $("ragain").textContent="틀린 문제만";
     $("ragain").onclick=()=>{const wr=c.pool.filter(q=>{const p=ST8.P[q[0]];return p&&p.w>0});
@@ -900,10 +900,10 @@ function applyChapterCounts(cnt){const MIGT=Date.now()-60000;let added=0;
   for(const k in cnt){const ci=+k,cor=cnt[k].correct;if(!(ci>=1))continue;
     const pool=chapterPool("mg",ci).filter(q=>!answered(ST8.P[q[0]]));
     const n=Math.max(0,Math.min(cnt[k].solved,pool.length));
-    pool.slice(0,n).forEach((q,i)=>{const base={d:MIGT+30*DAY,t:MIGT,c:0,w:0,b:0};
-      if(cor==null)ST8.P[q[0]]=Object.assign(base,{m:1});
-      else if(i<cor)ST8.P[q[0]]=Object.assign(base,{c:1});
-      else ST8.P[q[0]]=Object.assign(base,{w:1})});
+    pool.slice(0,n).forEach((q,i)=>{const base={d:MIGT+30*DAY,t:MIGT,c:0,w:0,b:0,m:1};
+      if(cor==null)ST8.P[q[0]]=Object.assign({},base);
+      else if(i<cor)ST8.P[q[0]]=Object.assign({},base,{c:1});
+      else ST8.P[q[0]]=Object.assign({},base,{w:1})});
     added+=n}
   save();return added}
 $("impgo").onclick=()=>{
