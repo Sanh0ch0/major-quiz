@@ -11,8 +11,8 @@
 <meta name="apple-mobile-web-app-title" content="전공 퀴즈">
 <meta name="robots" content="noindex,nofollow">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icons/icon-180.png">
-<link rel="icon" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/icon-180.png?v=3">
+<link rel="icon" href="icons/favicon.png?v=3">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
@@ -327,6 +327,28 @@ input{font:inherit}
 .gl .bar{margin-top:6px}
 .inp2{width:100%;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font-size:14.5px;padding:10px 12px;min-height:92px;resize:vertical;font-family:inherit;line-height:1.5}
 .inp2:focus{border-color:var(--acc);outline:none}
+/* ===== 화면 전환 ===== */
+.scr.tf{animation:tFwd .38s cubic-bezier(.2,.85,.25,1) both}
+.scr.tb{animation:tBack .38s cubic-bezier(.2,.85,.25,1) both}
+.scr.tz{animation:tZoom .42s cubic-bezier(.2,.9,.25,1.05) both}
+.scr.tu{animation:tUp .46s cubic-bezier(.2,.9,.25,1.05) both}
+.scr.ta{animation:tFade .5s ease both}
+.scr.stg>*:not(#homebody),.scr.stg>#homebody>*{animation:tItem .46s cubic-bezier(.2,.85,.25,1) both;animation-delay:calc(var(--i,0)*45ms + 60ms)}
+@keyframes tFwd{from{opacity:0;transform:translateX(42px)}}
+@keyframes tBack{from{opacity:0;transform:translateX(-42px)}}
+@keyframes tZoom{from{opacity:0;transform:scale(.9) translateY(14px)}}
+@keyframes tUp{from{opacity:0;transform:translateY(60px) scale(.95)}}
+@keyframes tFade{from{opacity:0;transform:scale(1.04);filter:blur(6px)}}
+@keyframes tItem{from{opacity:0;transform:translateY(18px)}}
+#wipe{position:fixed;inset:0;z-index:90;pointer-events:none;background:radial-gradient(circle at 50% 55%,#ffb347,#f26a21 55%,#c7470d);clip-path:circle(0% at 50% 60%);opacity:0}
+#wipe.go{animation:wipe .62s cubic-bezier(.7,0,.3,1) both}
+@keyframes wipe{0%{clip-path:circle(0% at 50% 60%);opacity:1}45%{clip-path:circle(150% at 50% 60%);opacity:1}100%{clip-path:circle(150% at 50% 60%);opacity:0}}
+.qcard.qin,.ans.qin>*{animation:qIn .36s cubic-bezier(.2,.9,.25,1.1) both}
+.ans.qin>*:nth-child(2){animation-delay:.05s}.ans.qin>*:nth-child(3){animation-delay:.1s}.ans.qin>*:nth-child(4){animation-delay:.15s}.ans.qin>*:nth-child(5){animation-delay:.2s}
+.qcard.qout,.ans.qout{animation:qOut .17s ease-in both}
+@keyframes qIn{from{opacity:0;transform:translateX(46px) scale(.97)}}
+@keyframes qOut{to{opacity:0;transform:translateX(-46px) scale(.97)}}
+@media (prefers-reduced-motion:reduce){#wipe{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -359,8 +381,9 @@ input{font:inherit}
 </svg>
 
 <!-- 잠금 -->
+<div id="wipe" aria-hidden="true"></div>
 <main id="lock" class="scr hide">
- <img src="icons/icon-180.png" alt="">
+ <img src="icons/icon-180.png?v=3" alt="">
  <h1>비밀번호를 입력해 주세요</h1>
  <div id="lkmsg">이 기기에서 한 번만 입력하면 돼요</div>
  <div class="dots" id="dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -636,7 +659,17 @@ const sfx={ok:c=>tone([660+Math.min(c,8)*35,990+Math.min(c,8)*35],.07,"triangle"
 const buzz=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
 
 /* ---------- 화면 ---------- */
-function show(s){["lock","home","play","res","set","stat"].forEach(x=>$(x).classList.toggle("hide",x!==s));window.scrollTo(0,0);updateNav()}
+let CUR=null,CURK=null;const DEPTH={lock:0,home:1,set:1,stat:1,play:2,res:3},NAVORD=["mg","ac","fm","stat","set"];
+function show(s){const from=CUR,fk=CURK,k=s==="home"?CFG.subj:s;CUR=s;CURK=k;["lock","home","play","res","set","stat"].forEach(x=>$(x).classList.toggle("hide",x!==s));window.scrollTo(0,0);updateNav();
+  if(from===s&&fk===k)return;
+  const e=$(s);let t="tf";
+  if(!from||from==="lock")t="ta";else if(s==="play")t="tz";else if(s==="res")t="tu";
+  else if(DEPTH[s]<DEPTH[from])t="tb";
+  else if(DEPTH[s]===DEPTH[from]&&NAVORD.indexOf(k)<NAVORD.indexOf(fk))t="tb";
+  if(s==="play"&&from!=="res"&&from!=="play"){const w=$("wipe");w.classList.remove("go");void w.offsetWidth;w.classList.add("go")}
+  e.classList.remove("tf","tb","tz","tu","ta","stg");void e.offsetWidth;e.classList.add(t);
+  if(s!=="play"&&s!=="lock"){[...e.children].flatMap(c=>c.id==="homebody"?[...c.children]:[c]).forEach((c,i)=>c.style.setProperty("--i",Math.min(i,10)));e.classList.add("stg")}
+  clearTimeout(e._tt);e._tt=setTimeout(()=>e.classList.remove("tf","tb","tz","tu","ta","stg"),1100)}
 const NAVSCREENS=["home","stat","set","res"];
 function updateNav(){
   const cur=["lock","home","play","res","set","stat"].find(x=>!$(x).classList.contains("hide"))||"lock";
@@ -796,14 +829,14 @@ function render(){
   if(G.kind==="prog"){const c=chapterStat(G.s,G.ci);$("trk").style.width=Math.max(2,c.ratio*100)+"%";$("qch").textContent=(G.i+1)+" / "+G.qs.length+" · "+META.S[s].CH[ch-1]+" · 푼 "+c.solved+" / "+c.total}
   else{$("trk").style.width=Math.max(4,G.i/G.qs.length*100)+"%";$("qch").textContent=(G.i+1)+" / "+G.qs.length+" · "+META.S[s].CH[ch-1]}
   $("qtp").textContent=tp==="ox"?"OX":tp==="mc5"?("기출"+(q[8]?" · "+q[8]:"")):"4지선다";$("qtp").className="tp"+(tp==="ox"?" ox":"");
-  const c=$("qcard");c.className="qcard"+(tp==="ox"?" ox":"");c.textContent=text;
+  const c=$("qcard");c.className="qcard"+(tp==="ox"?" ox":"");c.textContent=text;void c.offsetWidth;c.classList.add("qin");
   const A=$("ans");A.innerHTML="";
-  if(tp==="ox"){A.className="ans ox";[["O",1],["X",0]].forEach(([t,v])=>{const b=document.createElement("button");b.className="ab "+t;b.textContent=t;b.dataset.v=v;b.setAttribute("aria-label",t==="O"?"맞다":"틀리다");b.onclick=()=>answer(v,b);A.appendChild(b)})}
-  else{A.className="ans";const order=tp==="mc5"?opts.map((_,i)=>i):shuffle([0,1,2,3]);G.order=order;order.forEach((k,pos)=>{const b=document.createElement("button");b.className="op";b.dataset.v=k;b.innerHTML='<span class="n">'+(pos+1)+'</span><span></span>';b.lastChild.textContent=opts[k];b.onclick=()=>answer(k,b);A.appendChild(b)})}
+  if(tp==="ox"){A.className="ans ox qin";[["O",1],["X",0]].forEach(([t,v])=>{const b=document.createElement("button");b.className="ab "+t;b.textContent=t;b.dataset.v=v;b.setAttribute("aria-label",t==="O"?"맞다":"틀리다");b.onclick=()=>answer(v,b);A.appendChild(b)})}
+  else{A.className="ans qin";const order=tp==="mc5"?opts.map((_,i)=>i):shuffle([0,1,2,3]);G.order=order;order.forEach((k,pos)=>{const b=document.createElement("button");b.className="op";b.dataset.v=k;b.innerHTML='<span class="n">'+(pos+1)+'</span><span></span>';b.lastChild.textContent=opts[k];b.onclick=()=>answer(k,b);A.appendChild(b)})}
 }
 function setCombo(c){const e=$("combo");$("cb").textContent=c;e.classList.toggle("on",c>=2);if(c>=2){e.classList.remove("bump");void e.offsetWidth;e.classList.add("bump")}}
 function answer(v,btn){
-  if(!G||G.lock)return;G.lock=true;
+  if(!G||G.lock)return;G.lock=true;$("ans").classList.remove("qin");
   const q=G.qs[G.i],[id,s,ch,tp,text,opts,a,ex]=q,right=v===a;
   const xb=totalXP();grade(id,right);addDay(1);save();if(G.kind==="prog"){const cs=chapterStat(G.s,G.ci);$("trk").style.width=Math.max(2,cs.ratio*100)+"%";$("qch").textContent=(G.i+1)+" / "+G.qs.length+" · "+META.S[G.s].CH[G.ci-1]+" · 푼 "+cs.solved+" / "+cs.total}const gain=totalXP()-xb,mastered=right&&ST8.P[id].b===3;
   [...$("ans").children].forEach(b=>{b.disabled=true;const bv=+b.dataset.v;if(bv===a)b.classList.add("right");else if(b===btn)b.classList.add("wrong");else b.classList.add("dim")});
@@ -811,7 +844,7 @@ function answer(v,btn){
   if(right){G.ok++;G.combo++;G.max=Math.max(G.max,G.combo);setCombo(G.combo);sfx.ok(G.combo);buzz(10);
     const f=document.createElement("div");f.className="float";f.innerHTML="+"+gain+" XP"+(mastered?"<small>마스터!</small>":"");document.body.appendChild(f);setTimeout(()=>f.remove(),950);
     sh.className="sheet ok on";$("sh1").innerHTML='<span class="bd"><svg class="ic"><use href="#i-ok"/></svg></span>'+(G.combo>=3?G.combo+"연속 정답!":"정답이에요!")}
-  else{G.combo=0;setCombo(0);G.wrong.push(q);sfx.no();buzz([25,40,25]);$("qcard").classList.add("shake");
+  else{G.combo=0;setCombo(0);G.wrong.push(q);sfx.no();buzz([25,40,25]);$("qcard").classList.remove("qin");$("qcard").classList.add("shake");
     sh.className="sheet no on";$("sh1").innerHTML='<span class="bd"><svg class="ic"><use href="#i-x"/></svg></span>아쉬워요';
     const b=document.createElement("b");b.textContent="정답: "+(tp==="ox"?(a?"O":"X"):(G.order.indexOf(a)+1)+"번 "+opts[a]);x.appendChild(b)}
   const p=document.createElement("div");p.textContent=ex;x.appendChild(p);
@@ -819,7 +852,7 @@ function answer(v,btn){
   $("shgo").className="b3 w "+(right?"ok":"no");$("shgo").textContent=G.i+1>=G.qs.length?"결과 보기":"다음";
   setTimeout(()=>$("shgo").focus({preventScroll:true}),50);
 }
-$("shgo").onclick=()=>{$("sheet").classList.remove("on");if(!G)return;G.i++;if(G.i>=G.qs.length)finish();else{render();window.scrollTo(0,0)}};
+$("shgo").onclick=()=>{$("sheet").classList.remove("on");if(!G)return;G.i++;if(G.i>=G.qs.length)finish();else{const c=$("qcard"),A=$("ans");c.classList.remove("qin","shake");A.classList.remove("qin");c.classList.add("qout");A.classList.add("qout");G.lock=true;setTimeout(()=>{if(!G)return;render();window.scrollTo(0,0)},170)}};
 $("quit").onclick=()=>{if(!G)return;if(G.i>0&&!confirmQuit())return;G=null;$("sheet").classList.remove("on");renderHome();show("home")};
 function confirmQuit(){if(confirmQuit.t&&Date.now()-confirmQuit.t<2500)return true;confirmQuit.t=Date.now();toast("한 번 더 누르면 그만둬요 (푼 기록은 남아요)");return false}
 function finish(){
