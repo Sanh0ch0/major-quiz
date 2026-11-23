@@ -1,15 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 <defs>
-<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffa63a"/><stop offset=".55" stop-color="#ff5a3c"/><stop offset="1" stop-color="#e42f6d"/></linearGradient>
-<radialGradient id="gl" cx=".28" cy=".15" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".4"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></radialGradient>
-<linearGradient id="hx" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ffe9dc"/></linearGradient>
-<linearGradient id="bt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb02e"/><stop offset="1" stop-color="#ff5a1f"/></linearGradient>
-<path id="h" d="M256 92c10 0 20 3 29 8l104 60c18 10 29 29 29 50v120c0 21-11 40-29 50l-104 60c-18 10-40 10-58 0l-104-60c-18-10-29-29-29-50V210c0-21 11-40 29-50l104-60c9-5 19-8 29-8z"/>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6ea"/><stop offset="1" stop-color="#ffe7cf"/></linearGradient>
+<radialGradient id="bd" cx=".38" cy=".3" r=".85"><stop offset="0" stop-color="#ffc07a"/><stop offset=".55" stop-color="#ff8a3d"/><stop offset="1" stop-color="#f2621f"/></radialGradient>
+<radialGradient id="hl" cx=".33" cy=".22" r=".35"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
 </defs>
-<rect width="512" height="512" fill="url(#bg)"/><rect width="512" height="512" fill="url(#gl)"/>
-<use href="#h" fill="#9e1440" opacity=".4" transform="translate(0,16)"/>
-<use href="#h" fill="url(#hx)"/>
-<path d="M276 158 L196 276 h56 l-24 96 l90 -132 h-58 z" fill="#d84a1c" opacity=".25" transform="translate(4,10)"/>
-<path d="M276 158 L196 276 h56 l-24 96 l90 -132 h-58 z" fill="url(#bt)" stroke-linejoin="round" stroke="url(#bt)" stroke-width="10"/>
-<g fill="#fff"><path d="M420 78l10 24 24 10-24 10-10 24-10-24-24-10 24-10z"/><path d="M82 404l7 16 16 7-16 7-7 16-7-16-16-7 16-7z" opacity=".85"/><circle cx="446" cy="200" r="8" opacity=".7"/></g>
+<rect width="512" height="512" fill="url(#bg)"/>
+<g transform="translate(256 318) scale(1.22) translate(-256 -300)"><!-- body: soft mochi -->
+<ellipse cx="256" cy="452" rx="150" ry="18" fill="#d9773a" opacity=".18"/>
+<path d="M256 150c104 0 170 70 174 170 4 92-58 128-174 128S78 412 82 320c4-100 70-170 174-170z" fill="url(#bd)"/>
+<path d="M256 150c104 0 170 70 174 170 4 92-58 128-174 128S78 412 82 320c4-100 70-170 174-170z" fill="url(#hl)"/>
+<!-- eyes -->
+<ellipse cx="204" cy="300" rx="25" ry="35" fill="#2a1610"/><ellipse cx="308" cy="300" rx="25" ry="35" fill="#2a1610"/>
+<circle cx="212" cy="286" r="9" fill="#fff"/><circle cx="316" cy="286" r="9" fill="#fff"/>
+<circle cx="197" cy="314" r="4" fill="#fff" opacity=".7"/><circle cx="301" cy="314" r="4" fill="#fff" opacity=".7"/>
+<!-- cheeks + mouth -->
+<ellipse cx="158" cy="350" rx="24" ry="14" fill="#ff5f7e" opacity=".45"/><ellipse cx="354" cy="350" rx="24" ry="14" fill="#ff5f7e" opacity=".45"/>
+<path d="M240 352 q16 16 32 0" fill="none" stroke="#2a1610" stroke-width="8" stroke-linecap="round"/>
+</g><path d="M270 42 L226 128 h36 l-20 62 l62 -92 h-36 z" fill="#ffc21a" stroke="#e8930a" stroke-width="9" stroke-linejoin="round"/>
 </svg>
