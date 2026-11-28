@@ -1,4 +1,4 @@
-# 전공 퀴즈
+# Tangerine 🍊 (전공 퀴즈)
 
 경영학·회계학·재무관리를 휴대폰에서 풀어 나가는 퀴즈 웹 앱입니다. (https://sanh0ch0.github.io/major-quiz/)
 
